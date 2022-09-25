@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Products</title>
 </head>
 <body>
     @section('content')
-    <h1>this is the body of home page</h1>
+     <h1>This is products page</h1>
     @endsection
 </body>
 </html>
