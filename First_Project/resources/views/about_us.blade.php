@@ -1,5 +1,6 @@
+
 @extends('layouts.app')
-<!DOCTYPE html>
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,11 @@
 </head>
 <body>
     @section('content')
-    <h1>thi is the body of about us</h1>
+    <h1>Group Name: Troubleshooters</h1>
+    <h2>Members:</h2>
+    <h5>Md. Rifat Hossain</h5>
+    <h5>ABdullah Al Mahmud</h5>
+    <h5>Rashedul Islam Rashed</h5>
     @endsection
 </body>
 </html>

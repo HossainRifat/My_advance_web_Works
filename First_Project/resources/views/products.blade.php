@@ -9,7 +9,11 @@
 </head>
 <body>
     @section('content')
-     <h1>This is products page</h1>
+     <h1>Products List</h1>
+     @foreach($productList as $product)
+     Product Name: {{$product->name}} <br>
+     Product Size: {{$product->size}} <br><br>
+     @endforeach
     @endsection
 </body>
 </html>

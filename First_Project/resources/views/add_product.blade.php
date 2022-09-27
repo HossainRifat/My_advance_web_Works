@@ -8,8 +8,17 @@
     <title>Add Product</title>
 </head>
 <body>
+    <div>
     @section('content')
-    <h1>The is add product page</h1>
+    <h2>Add Product</h2>
+    <form action="/showProduct" method="post" style="max-width: 500px">
+        {{csrf_field()}}
+        Name: <input type="text" name="ProductName" class="form-control">
+        Size: <input type="text" name="ProductSize" class="form-control">
+        <input type="submit" class="btn btn-success">
+    </form>
     @endsection
+    </div>
+    
 </body>
 </html>

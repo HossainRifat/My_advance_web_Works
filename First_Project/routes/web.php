@@ -22,10 +22,14 @@ Route::get('/', function () {
 //     return view('hello');
 // });
 
-Route::get('/home',[pageController::class,'Hello']);
+Route::get('/home',[pageController::class,'Hello'])->name('home');
 
 Route::get('/about',[pageController::class,'About']);
 
 Route::get('/products',[pageController::class,'Products']);
 
 Route::get('/add',[pageController::class,'Add_product']);
+
+Route::get('/contact',[pageController::class,'Contact']);
+
+Route::post('/showProduct',[pageController::class,'showProduct']);
