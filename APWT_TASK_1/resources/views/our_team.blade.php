@@ -10,8 +10,11 @@
 </head>
 <body>
     @section('content')
-    <h1>A Product Delivery company.</h1>
-    <h4>We will delivery product wherever & whenever you need!!</h4>
+    <h1>Group Name: Troubleshooters</h1>
+    <h2>Members:</h2>
+    <h5>Md. Rifat Hossain</h5>
+    <h5>ABdullah Al Mahmud</h5>
+    <h5>Rashedul Islam Rashed</h5>
     @endsection
 </body>
 </html>

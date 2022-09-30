@@ -33,3 +33,5 @@ Route::get('/add',[pageController::class,'Add_product']);
 Route::get('/contact',[pageController::class,'Contact']);
 
 Route::post('/showProduct',[pageController::class,'showProduct']);
+
+Route::get('/team',[pageController::class,'Our_team']);

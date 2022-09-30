@@ -17,7 +17,16 @@ class Product{
 
 
 class pageController extends Controller
-{
+{   
+    var $productList = [];
+    
+    function Add_list(){
+        $p1 = new Product("car","large");
+        $p2 = new Product("juce","small");
+        $p3 = new Product("water bottle","small");
+        $this->productList=array($p1,$p2,$p3);
+    }
+
     function Hello(){
         return view('hello');
     }
@@ -27,11 +36,8 @@ class pageController extends Controller
     }
 
     function Products(){
-        $p1 = new Product("car","large");
-        $p2 = new Product("juce","small");
-        $p3 = new Product("water bottle","small");
-        $productList=array($p1,$p2,$p3);
-        return view('products')->with("productList",$productList);
+        $this->Add_list();
+        return view('products')->with("productList",$this->productList);
     }
 
     function Add_product(){
@@ -42,10 +48,17 @@ class pageController extends Controller
         return view('contact');
     }
 
+    function Our_team(){
+        return view('our_team');
+    }
+
     function showProduct(Request $rq){
         $output = "submitted";
         $output.="<br>Product Name:" .$rq->ProductName;
         $output.="<br>Product size:" .$rq->ProductSize;
-        return $output;
+        $p1 = new Product($rq->ProductName,$rq->ProductSize);
+        $this->Add_list();
+        $this->productList[] =  $p1;
+        return view("updated_product")->with("productList",$this->productList);
     }
 }
