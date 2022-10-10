@@ -24,9 +24,5 @@
                 <a href="{{url('/team')}}" class="nav-link">Our Team</a>
                 </li>
         </ul>
-        
-        
-        
-        
-        
+     
 </div>

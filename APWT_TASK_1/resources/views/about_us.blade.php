@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 <html>
 <html lang="en">
