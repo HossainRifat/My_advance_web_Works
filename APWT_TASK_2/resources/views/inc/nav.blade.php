@@ -11,6 +11,10 @@
             <li class="nav-item">
             <a href="{{url('/contact')}}" class="nav-link">Contact</a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{url('/studentlist')}}" class="nav-link">Student List</a>
+            </li>
     </ul>
  
 </header>

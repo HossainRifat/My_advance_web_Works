@@ -13,8 +13,8 @@
     <div class="reg">
         <div class="reg-content">
             <div class="left-content">
-                <div class="reg-img">
-                    <img src="/img/reg.png" alt="">
+                <div class="reg-img-login">
+                    <img src="/img/login.png" alt="">
                 </div>
             </div>
             <div class="right-content">
