@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\All_user;
 use App\Models\Uuser;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -53,5 +54,14 @@ class UserController extends Controller
         $student->save();
 
         return redirect()->route('Login');
+    }
+
+    function Dashboard(){
+        return view("User.dash");
+    }
+
+    function Logout(){
+        session()->forget(['entity', 'email']);
+        return redirect()->route("Login");
     }
 }

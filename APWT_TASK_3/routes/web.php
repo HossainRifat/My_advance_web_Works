@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\validStudent;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,7 @@ Route::get('/registration/{id}',[GlobalController::class,'Registration'])->name(
 
 Route::post('/registration/user',[UserController::class,'RegSubmit'])->name("UserSubmit");
 Route::post('/registration/admin',[AdminController::class,'RegSubmit'])->name("AdminSubmit");
+
+Route::get('/user/dashboard',[UserController::class,'Dashboard'])->name("Dashboard")->middleware("validUser");
+
+Route::get('/user/logout',[UserController::class,'Logout'])->name("Logout");

@@ -35,6 +35,10 @@ class GlobalController extends Controller
 
                 session()->put("entity",$student->entity);
                 session()->put("email",$student->email);
+
+                if($student->entity == "user"){
+                    return redirect()->route('Dashboard');
+                }
             }
             else{
                 $r = "Incorrect Password";
