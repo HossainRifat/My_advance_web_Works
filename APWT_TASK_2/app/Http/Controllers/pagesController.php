@@ -82,4 +82,16 @@ class pagesController extends Controller
     function Contact(){
         return view("contact");
     }
+
+    function ContactSubmit(Request $request){
+        
+        $this->validate($request,[
+            "First_Name"=>"required | min:3 | regex:/^[a-zA-Z]+$/u | max:255",
+            "email"=>"email | max:255",
+            "message"=>"required | min:5 | max:500"
+        ]
+        );
+
+        return redirect()->route("Contact");
+    }
 }

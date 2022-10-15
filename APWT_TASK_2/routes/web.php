@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/login',[pagesController::class,'Login'])->name("/login");
 Route::post('/login',[pagesController::class,'LoginSubmit'])->name("/login");
-Route::get('/contact',[pagesController::class,'Contact']);
+Route::get('/contact',[pagesController::class,'Contact'])->name("Contact");
 Route::get('/registration',[pagesController::class,'Registration'])->name("/reg");
 Route::Post('/registration',[pagesController::class,'RegSubmit'])->name("/reg");
 
@@ -31,3 +31,5 @@ Route::get('/studentEdit/{id}',[StudentController::class,'StudentEdit']);
 Route::post('/studentEdit',[StudentController::class,'StudentEditSubmit'])->name('studentEdit');
 
 Route::get('/studentDelete/{id}',[StudentController::class,'StudentDelete'])->name('studentDelete');
+
+Route::post('/contact',[pagesController::class,'ContactSubmit'])->name("ContactSubmit");

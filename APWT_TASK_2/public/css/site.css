@@ -101,6 +101,15 @@ html{
     border: aliceblue;
 }
 
+.submit-contact button{
+    width: 40px;
+    padding: 7px 23px;
+    background:aliceblue;
+    color: var(--second-color);
+    border-radius: 6px;
+    border: aliceblue;
+}
+
 .navbar{
     z-index: 99999;
     width: 100%;
@@ -147,4 +156,18 @@ table{
 .reg-img-login img{
     margin-left: 10em;
     max-width: 350px;
+}
+
+.background-img{
+    position:absolute;
+    z-index: 2;
+    background-image: url('../img/contact2.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+}
+
+.reg-img-login{
+    margin-left: 10px;
 }
