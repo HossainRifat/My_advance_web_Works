@@ -95,6 +95,10 @@ class AdminController extends Controller
     function Delete(Request $request){
 
         $l1 = Uuser::where('id', $request->id)->first();
+
+        $l2 = All_user::where('email', $l1->email)->first();
+        $l2->delete();
+
         $l1->delete();
         return redirect()->route("Userlist");
     }
