@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class validUser
+class validAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class validUser
     public function handle(Request $request, Closure $next)
     {
         if($request->session()->has('email') && $request->session()->has('entity')){
-            if(session()->get('entity') == "user"){
+            if(session()->get('entity') == "admin"){
                 return $next($request);
             }
             else{

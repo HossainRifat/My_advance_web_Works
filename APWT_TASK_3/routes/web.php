@@ -29,5 +29,20 @@ Route::post('/registration/user',[UserController::class,'RegSubmit'])->name("Use
 Route::post('/registration/admin',[AdminController::class,'RegSubmit'])->name("AdminSubmit");
 
 Route::get('/user/dashboard',[UserController::class,'Dashboard'])->name("Dashboard")->middleware("validUser");
+Route::post('/user/dashboard',[UserController::class,'DashboardSubmit'])->name("DashboardSubmit")->middleware("validUser");
+
+Route::get('/user/edit',[UserController::class,'Edit'])->name("Edit")->middleware("validUser");
+Route::post('/user/edit',[UserController::class,'EditSubmit'])->name("EditSubmit")->middleware("validUser");
 
 Route::get('/user/logout',[UserController::class,'Logout'])->name("Logout");
+Route::get('/admin/logout',[AdminController::class,'Logout'])->name("Logout");
+
+Route::get('/user/profile',[UserController::class,'Profile'])->name("Profile")->middleware("validUser");
+
+
+Route::get('/admin/userlist',[AdminController::class,'Userlist'])->name("Userlist")->middleware("validAdmin");
+
+Route::get('/admin/edit/{id}',[AdminController::class,'Edit'])->name("adEdit")->middleware("validAdmin");
+Route::post('/admin/edit',[AdminController::class,'EditSubmit'])->name("adEditSubmit")->middleware("validAdmin");
+
+Route::get('/admin/delete/{id}',[AdminController::class,'Delete'])->name("Delete")->middleware("validAdmin");

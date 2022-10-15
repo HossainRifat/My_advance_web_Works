@@ -1,20 +1,14 @@
 <header class="shadow navbar navbar-expand-lg">
     <ul class="navbar-nav mr-auto nav-bar">
             <li class="nav-item">
-            <a href="{{route('/login')}}" class="nav-link">Login</a>
+            <a href="/admin/userlist" class="nav-link">User List</a>
             </li>    
             
             <li class="nav-item">
-            <a href="{{route('/reg')}}" class="nav-link">Registration</a>
+            <a href="/admin/logout" class="nav-link">Logout</a>
             </li>
             
-            <li class="nav-item">
-            <a href="{{url('/contact')}}" class="nav-link">Contact</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{url('/studentlist')}}" class="nav-link">Student List</a>
-            </li>
+            
     </ul>
  
 </header>
