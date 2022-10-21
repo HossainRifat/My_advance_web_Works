@@ -25,6 +25,8 @@ return new class extends Migration
             $table->foreign('seller_id')->references('id')->on('sellers');
             $table->integer('product_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('set null')->onUpdate('cascade');
+            $table->integer('post_id')->unsigned()->nullable();
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('set null')->onUpdate('cascade');
             $table->integer('buyer_id')->unsigned()->nullable();
             $table->foreign('buyer_id')->references('id')->on('buyers')->onDelete('set null')->onUpdate('cascade');
             $table->string('status', 100);

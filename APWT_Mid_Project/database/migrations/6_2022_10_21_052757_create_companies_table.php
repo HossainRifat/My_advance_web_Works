@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('photo', 500)->nullable();
             $table->string('production_per_week', 50);
             $table->string('status', 500)->nullable();
-            $table->integer('seller_id')->unsigned()->nullable();
-            $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('set null')->onUpdate('cascade');
+            $table->integer('seller_id')->unsigned();
+            $table->foreign('seller_id')->references('id')->on('sellers');
         });
     }
 

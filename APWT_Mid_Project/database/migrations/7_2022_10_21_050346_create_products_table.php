@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');
-            $table->string('description')->nullable();
+            $table->string('product_name', 100);
+            $table->string('description', 500)->nullable();
+            $table->integer('company_id');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
