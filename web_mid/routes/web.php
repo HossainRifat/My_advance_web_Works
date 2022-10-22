@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\GlobalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [GlobalController::class, 'Home'])->name("Home");
+
+Route::get('/registration/{id}', [GlobalController::class, 'Registration'])->name("Registration");
+Route::post('/registration/buyer', [BuyerController::class, 'RegistrationSubmit'])->name("RegistrationSubmit");
