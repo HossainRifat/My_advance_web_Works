@@ -23,7 +23,7 @@
                 <h2>Buyer Registration</h2>
                 <h4>Just a Step way to become our Member!</h4>
                 <div class="reg-border">
-                    <form  method="post" action="/registration/buyer">
+                    <form  method="post" action="/registration/buyer" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <label>First Name</label><br>
                         <input type="text" placeholder="Enter your first name" name="first_name" value="{{old('first_name')}}">
