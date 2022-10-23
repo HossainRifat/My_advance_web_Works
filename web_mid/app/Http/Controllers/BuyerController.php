@@ -24,7 +24,7 @@ class BuyerController extends Controller
                 "email" => ["required", "email", new EmailRule],
                 "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
                 "password" => "required | min:8 | max:50",
-                "photo" => ["required", "mimes:jpg,png,jpge", new FileSaveRule]
+                "photo" => ["required", "mimes:jpg,png,jpeg", new FileSaveRule]
             ],
             [
                 "password.min" => "Password should be at least 5 character."
