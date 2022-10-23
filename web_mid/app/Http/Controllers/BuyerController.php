@@ -24,7 +24,7 @@ class BuyerController extends Controller
                 "email" => ["required", "email", new EmailRule],
                 "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
                 "password" => "required | min:8 | max:50",
-                "photo" => ["required", "mimes:jpg,png,jpeg", new FileSaveRule]
+                "photo" => ["required", "mimes:jpg,png,jpeg"]
             ],
             [
                 "password.min" => "Password should be at least 5 character."
@@ -40,7 +40,30 @@ class BuyerController extends Controller
             //$filePath = Storage::putFileAs("uploads", $request->file("photo"), , "public");
             //dd($filePath);
             if ($filePath) {
+                $data = [
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'dob' => $request->dob,
+                    'gender' => $request->gender,
+                    'email' => $request->email,
+                    'address' => $request->address,
+                    'password' => $request->password,
+                    'photo' => $filename,
+                ];
+                $jsonData = json_encode($data);
+                session()->put("reg1", $jsonData);
+                session()->put("name", $request->first_name);
+                //dd(session()->get("reg1"));
+
+                return redirect()->route('Registration02');
+            } else {
+                return redirect()->route('Registration');
             }
         }
+    }
+
+    public function Registration02()
+    {
+        return view('buyer.registration02');
     }
 }

@@ -86,7 +86,7 @@
                                 <p>{{$errors->first("address")}}</p>
                             </span>
                         @endif
-                        <input type="submit" name="submit" value="Signup">
+                        <input type="submit" name="submit" value="Next">
                     </form>
                 </div>
             </div>

@@ -23,3 +23,5 @@ Route::get('/', [GlobalController::class, 'Home'])->name("Home");
 
 Route::get('/registration/{id}', [GlobalController::class, 'Registration'])->name("Registration");
 Route::post('/registration/buyer', [BuyerController::class, 'RegistrationSubmit'])->name("RegistrationSubmit");
+
+Route::get('/registration02/buyer', [BuyerController::class, 'Registration02'])->name("Registration02")->middleware('ValidReg02');

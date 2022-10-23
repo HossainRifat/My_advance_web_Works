@@ -160,7 +160,7 @@ table{
 }
 
 .reg-border input[type=file]{
-    width: 100%;
+    min-width: 540px;
     margin-bottom: 20px;
     border: solid;
     border-radius: 6px;
