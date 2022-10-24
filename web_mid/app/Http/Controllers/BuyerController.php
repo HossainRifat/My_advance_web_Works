@@ -27,7 +27,8 @@ class BuyerController extends Controller
                 "photo" => ["required", "mimes:jpg,png,jpeg"]
             ],
             [
-                "password.min" => "Password should be at least 5 character."
+                "password.min" => "Password should be at least 8 character.",
+                "photo.mines" => "Only jpg, jpeg, png files are allowed."
             ]
 
         );
@@ -52,7 +53,7 @@ class BuyerController extends Controller
                 ];
                 $jsonData = json_encode($data);
                 session()->put("reg1", $jsonData);
-                session()->put("name", $request->first_name);
+                session()->put("email", $request->email);
                 //dd(session()->get("reg1"));
 
                 return redirect()->route('Registration02');
@@ -65,5 +66,136 @@ class BuyerController extends Controller
     public function Registration02()
     {
         return view('buyer.registration02');
+    }
+
+    public function Registration02Submit(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                "nid" => ["required", "max:50"],
+                "passport" => ["max:50"],
+                "phone" => ["required", "max:50"],
+                "account" => ["required", "mimes:pdf"],
+                "documents" => ["mimes:pdf"],
+
+            ],
+            [
+                "account.mines" => "Only pdf files are allowed.",
+                "documents.mines" => "Only pdf files are allowed."
+            ]
+
+        );
+
+        if ($request->account) {
+            $filename = date("d-m-Y_H-i-s") . '_account_' . session()->get('email') . '.' . $request->account->extension();
+            //$filepath = $request->file('file')->storeAs('uploads', $filename, 'public');
+            $filePath = $request->file('account')->storeAs('uploads', $filename, 'public');
+            //dd($filename);
+            //$filePath = Storage::putFileAs("uploads", $request->file("photo"), , "public");
+            //dd($filePath);
+            if ($request->documents) {
+                $filename2 = date("d-m-Y_H-i-s") . '_documents_' . session()->get('email') . '.' . $request->documents->extension();
+                $filePath2 = $request->file('documents')->storeAs('uploads', $filename2, 'public');
+            }
+            if ($filePath) {
+                if ($filePath2) {
+
+                    if ($request->passport) {
+                        $data = [
+                            'nid' => $request->nid,
+                            'passport' => $request->passport,
+                            'phone' => $request->phone,
+                            'account' => $filename,
+                            'documents' => $filePath2,
+                        ];
+                    } else {
+                        $data = [
+                            'nid' => $request->nid,
+                            'phone' => $request->phone,
+                            'account' => $filename,
+                            'documents' => $filePath2,
+                            'passport' => "NULL",
+                        ];
+                    }
+                } else {
+                    if ($request->passport) {
+                        $data = [
+                            'nid' => $request->nid,
+                            'passport' => $request->passport,
+                            'phone' => $request->phone,
+                            'account' => $filename,
+                            'documents' => "NULL",
+                        ];
+                    } else {
+                        $data = [
+                            'nid' => $request->nid,
+                            'phone' => $request->phone,
+                            'account' => $filename,
+                            'documents' => "NULL",
+                            'passport' => "NULL",
+                        ];
+                    };
+                }
+
+                $jsonData = json_encode($data);
+                session()->put("reg2", $jsonData);
+
+                //dd(session()->get('reg2'), session()->get('reg1'));
+
+                return redirect()->route('Registration03');
+            } else {
+                return redirect()->route('Registration02');
+            }
+        }
+    }
+
+    public function Registration03()
+    {
+        return view('buyer.registration03');
+    }
+
+    public function Registration03Submit(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                "password" => ["required", "max:50", "min:8"],
+                "password_confirmation" => ["required", "min:8", "max:50", "same:password"],
+
+            ],
+            [
+                "password.min" => "Password must be at least 8 character.",
+                "password_confirmation.min" => "Password must be at least 8 character.",
+                "password_confirmation.same" => "Password did not match."
+            ]
+
+        );
+
+        $jsondata = session()->get('reg1');
+        $data = json_decode($jsondata);
+
+        $jsondata2 = session()->get('reg2');
+        $data2 = json_decode($jsondata2);
+
+        $buyer = new buyer();
+        $buyer->first_name = $data->first_name;
+        $buyer->last_name = $data->last_name;
+        $buyer->dob = $data->dob;
+        $buyer->gender = $data->gender;
+        $buyer->email = $data->email;
+        $buyer->address = $data->address;
+        $buyer->password = $request->password;
+        $buyer->photo = $data->photo;
+
+        $buyer->nid = $data2->nid;
+        $buyer->passport = $data2->passport;
+        $buyer->phone = $data2->phone;
+        $buyer->account = $data2->account;
+        $buyer->documents = $data2->documents;
+        $buyer->status = "invalid";
+
+        $buyer->save();
+        return redirect()->route("Home");
     }
 }

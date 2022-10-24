@@ -14,7 +14,7 @@
     <div class="reg">
         <div class="reg-content">
             <div class="left-content">
-                <h2>1 OF 3</h2>
+                <h2>3 OF 3</h2>
                 <div class="reg-img">
                     <img src="/img/reg.png" alt="">
                 </div>
@@ -40,25 +40,25 @@
                             </span>
                         @endif
                         <label>Email</label>
-                        <input type="Email" placeholder="Enter your email" name="email">
+                        <input type="Email" placeholder="Enter your email" name="email" value="{{old('email')}}">
                         @if ($errors->has('email'))
                             <span>
                                 <p>{{$errors->first("email")}}</p>
                             </span>
                         @endif
                         <label>Password</label>
-                        <input type="password" placeholder="Enter your password" name="password">
+                        <input type="password" placeholder="Enter your password" name="password" value="{{old('password')}}">
                         @if ($errors->has('password'))
                             <span>
                                 <p>{{$errors->first("password")}}</p>
                             </span>
                         @endif
                         <label>Gender</label><br>
-                        <input type="radio" name="gender" value="male" class="form-check-input">
+                        <input type="radio" name="gender" value="male" class="form-check-input" value="{{old('gender')}}">
                         <label >Male</label>
-                        <input type="radio" name="gender" value="female" class="form-check-input">
+                        <input type="radio" name="gender" value="female" class="form-check-input" value="{{old('gender')}}">
                         <label >Female</label>
-                        <input type="radio" name="gender" value="other" class="form-check-input">
+                        <input type="radio" name="gender" value="other" class="form-check-input" value="{{old('gender')}}">
                         <label >Other</label><br>
                         @if ($errors->has('gender'))
                             <span>
@@ -66,21 +66,21 @@
                             </span>
                         @endif
                         <label>Date of birth</label>
-                        <input type="date" placeholder="Enter your date of bitrh" name="dob">
+                        <input type="date" placeholder="Enter your date of bitrh" name="dob" value="{{old('dob')}}">
                         @if ($errors->has('dob'))
                             <span>
                                 <p>{{$errors->first("dob")}}</p>
                             </span>
                         @endif
                         <label>Profile Picture</label>
-                        <input type="file" placeholder="Enter your profile picture" class="form-control" id="formFile" name="photo">
+                        <input type="file" placeholder="Enter your profile picture" class="form-control" id="formFile" name="photo" value="{{old('photo')}}">
                         @if ($errors->has('photo'))
                             <span>
                                 <p>{{$errors->first("photo")}}</p>
                             </span>
                         @endif
                         <label>Address</label>
-                        <textarea name="address" rows="3" placeholder="Enter address"></textarea>
+                        <textarea name="address" rows="3" placeholder="Enter address">{{old('address')}}</textarea>
                         @if ($errors->has('address'))
                             <span>
                                 <p>{{$errors->first("address")}}</p>

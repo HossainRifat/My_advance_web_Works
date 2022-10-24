@@ -33,43 +33,23 @@
                 <h2>Buyer Registration</h2>
                 <h4>Just a Step way to become our Member!</h4>
                 <div class="reg-border">
-                    <form  method="post" action="/registration02/buyer" enctype="multipart/form-data">
+                    <form  method="post" action="/registration03/buyer" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <label>National Identificatin Number <span>*</span></label><br>
-                        <input type="text" placeholder="Enter your NId" name="nid" value="{{old('nid')}}">
-                        @if ($errors->has('nid'))
+                        <label>Password <span>*</span></label><br>
+                        <input type="password" placeholder="Enter pessword" name="password" value="{{old('password')}}">
+                        @if ($errors->has('password'))
                             <span>
-                                <p>{{$errors->first("nid")}}</p>
+                                <p>{{$errors->first("password")}}</p>
                             </span>
                         @endif
-                        <label>Passport Number</label><br>
-                        <input type="text" placeholder="Enter your passport number" name="passport" value="{{old('passport')}}">
-                        @if ($errors->has('passport'))
+                        <label>Confirm Password <span>*</span></label><br>
+                        <input type="password" placeholder="Re-enter password" name="password_confirmation" value="{{old('password_confirmation')}}">
+                        @if ($errors->has('password_confirmation'))
                             <span>
-                                <p>{{$errors->first("passport")}}</p>
+                                <p>{{$errors->first("password_confirmation")}}</p>
                             </span>
                         @endif
-                        <label>Phone Number <span>*</span></label><br>
-                        <input type="text" placeholder="Enter your phone number" name="phone" id="phone" value="{{old('phone')}}">
-                        @if ($errors->has('phone'))
-                            <span>
-                                <p>{{$errors->first("phone")}}</p>
-                            </span>
-                        @endif
-                        <label>Income Cirtificate <span>*</span></label>
-                        <input type="file" class="form-control" id="formFile" name="account">
-                        @if ($errors->has('account'))
-                            <span>
-                                <p>{{$errors->first("account")}}</p>
-                            </span>
-                        @endif
-                        <label>Documents Of Previous (at least Five)</label>
-                        <input type="file" class="form-control" id="formFile" name="documents">
-                        @if ($errors->has('documents'))
-                            <span>
-                                <p>{{$errors->first("documents")}}</p>
-                            </span>
-                        @endif
+                        
                         
                         <input type="submit" name="submit" value="Signup">
                     </form>
