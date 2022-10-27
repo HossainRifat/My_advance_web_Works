@@ -172,3 +172,7 @@ table{
 .reg-border span{
     color: red;
 }
+
+.reg-border input[type=checkbox]{
+    margin-bottom: 20px;
+}

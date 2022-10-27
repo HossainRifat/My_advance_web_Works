@@ -9,4 +9,9 @@ class login extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo(all_user::class, 'all_users_id', 'id');
+    }
 }

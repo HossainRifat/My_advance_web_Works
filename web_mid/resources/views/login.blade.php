@@ -34,15 +34,16 @@
                         @endif
                         <label>Password</label>
                         <input type="password" placeholder="Enter your password" name="password">
-                 
-                            <span>
-                                @isset($output)
-                                <p class="login-output">{{$output}}</p>
+                        <span>
+                            @isset($output)
+                            <p class="login-output">{{$output}}</p>
                             @endisset
-                            
-                            </span>
+                        </span>
+
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="logedin">
+                        <label class="form-check-label" for="flexCheckDefault">Stay logged in.</label><br>
                         
-                        <input type="submit" name="submit" value="Signup">
+                        <input type="submit" name="submit" value="Login">
                     </form>
                 </div>
             </div>
