@@ -583,6 +583,7 @@ class ComposerStaticInitc54a5a7fc2075e2ff8e464013ae1dc75
         'App\\Rules\\AgeRule' => __DIR__ . '/../..' . '/app/Rules/AgeRule.php',
         'App\\Rules\\EmailRule' => __DIR__ . '/../..' . '/app/Rules/EmailRule.php',
         'App\\Rules\\FileSaveRule' => __DIR__ . '/../..' . '/app/Rules/FileSaveRule.php',
+        'App\\Rules\\PhoneRule' => __DIR__ . '/../..' . '/app/Rules/PhoneRule.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',

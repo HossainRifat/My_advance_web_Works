@@ -149,8 +149,9 @@ table{
 }
 
 .reg-img-login img{
+    margin-top: 0px;
     margin-left: 10em;
-    max-width: 350px;
+    max-width: 400px;
 }
 
 .reg-content .left-content h2{

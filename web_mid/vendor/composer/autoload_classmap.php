@@ -59,6 +59,7 @@ return array(
     'App\\Rules\\AgeRule' => $baseDir . '/app/Rules/AgeRule.php',
     'App\\Rules\\EmailRule' => $baseDir . '/app/Rules/EmailRule.php',
     'App\\Rules\\FileSaveRule' => $baseDir . '/app/Rules/FileSaveRule.php',
+    'App\\Rules\\PhoneRule' => $baseDir . '/app/Rules/PhoneRule.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Brick\\Math\\BigDecimal' => $vendorDir . '/brick/math/src/BigDecimal.php',
     'Brick\\Math\\BigInteger' => $vendorDir . '/brick/math/src/BigInteger.php',

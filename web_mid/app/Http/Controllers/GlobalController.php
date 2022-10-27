@@ -13,6 +13,7 @@ class GlobalController extends Controller
 
     public function Registration(Request $request)
     {
+
         return view('registration')->with("name", $request->id);
     }
 }

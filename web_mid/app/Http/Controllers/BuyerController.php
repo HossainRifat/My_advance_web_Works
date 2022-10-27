@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\all_user;
 use App\Models\buyer;
 use App\Rules\AgeRule;
 use App\Rules\EmailRule;
 use App\Rules\FileSaveRule;
+use App\Rules\PhoneRule;
 use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -75,7 +77,7 @@ class BuyerController extends Controller
             [
                 "nid" => ["required", "max:50"],
                 "passport" => ["max:50"],
-                "phone" => ["required", "max:50"],
+                "phone" => ["required", "max:50", new PhoneRule],
                 "account" => ["required", "mimes:pdf"],
                 "documents" => ["mimes:pdf"],
 
@@ -94,6 +96,7 @@ class BuyerController extends Controller
             //dd($filename);
             //$filePath = Storage::putFileAs("uploads", $request->file("photo"), , "public");
             //dd($filePath);
+            $filePath2 = NULL;
             if ($request->documents) {
                 $filename2 = date("d-m-Y_H-i-s") . '_documents_' . session()->get('email') . '.' . $request->documents->extension();
                 $filePath2 = $request->file('documents')->storeAs('uploads', $filename2, 'public');
@@ -139,6 +142,7 @@ class BuyerController extends Controller
                 }
 
                 $jsonData = json_encode($data);
+                //dd($jsonData);
                 session()->put("reg2", $jsonData);
 
                 //dd(session()->get('reg2'), session()->get('reg1'));
@@ -196,6 +200,13 @@ class BuyerController extends Controller
         $buyer->status = "invalid";
 
         $buyer->save();
+
+        $user = new all_user();
+        $user->email = $data->email;
+        $user->password = $request->password;
+        $user->entity = "buyer";
+        $user->save();
+
         return redirect()->route("Home");
     }
 }

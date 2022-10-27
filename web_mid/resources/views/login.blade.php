@@ -14,7 +14,7 @@
         <div class="reg-content">
             <div class="left-content">
                 <div class="reg-img-login">
-                    <img src="/img/login.png" alt="">
+                    <img src="/img/login.jpg" alt="">
                 </div>
             </div>
             <div class="right-content">
@@ -22,7 +22,7 @@
                 <h4>Welcome back to xyz website!</h4>
                
                 <div class="reg-border">
-                    <form  method="post" action="">
+                    <form  method="post" action="/login">
                         {{ csrf_field() }}
                         
                         <label>Email</label>
@@ -33,7 +33,7 @@
                             </span>
                         @endif
                         <label>Password</label>
-                        <input type="password" placeholder="Enter your password" name="pass">
+                        <input type="password" placeholder="Enter your password" name="password">
                  
                             <span>
                                 @isset($output)

@@ -2,11 +2,10 @@
 
 namespace App\Rules;
 
-use App\Models\all_user;
 use App\Models\buyer;
 use Illuminate\Contracts\Validation\Rule;
 
-class EmailRule implements Rule
+class PhoneRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,7 +26,7 @@ class EmailRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $user = all_user::where('email', $value)->first();
+        $user = buyer::where('phone', $value)->first();
         if (!$user) {
             return true;
         }
@@ -40,6 +39,6 @@ class EmailRule implements Rule
      */
     public function message()
     {
-        return 'The email already exists.';
+        return 'The Phone number already exists.';
     }
 }

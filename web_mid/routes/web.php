@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\GlobalController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [GlobalController::class, 'Home'])->name("Home");
+
+Route::get('/login', [LoginController::class, 'Login'])->name("Login");
+Route::post('/login', [LoginController::class, 'LoginSubmit'])->name("LoginSubmit");
 
 Route::get('/registration/{id}', [GlobalController::class, 'Registration'])->name("Registration");
 Route::post('/registration/buyer', [BuyerController::class, 'RegistrationSubmit'])->name("RegistrationSubmit");
