@@ -33,3 +33,7 @@ Route::post('/registration02/buyer', [BuyerController::class, 'Registration02Sub
 
 Route::get('/registration03/buyer', [BuyerController::class, 'Registration03'])->name("Registration03")->middleware('ValidReg03');
 Route::post('/registration03/buyer', [BuyerController::class, 'Registration03Submit'])->name("Registration03Submit");
+
+Route::get('/buyer/dashboard', [BuyerController::class, 'BuyerDashboard'])->name("BuyerDashboard")->middleware('ValidBuyerLogin');
+
+Route::get('/buyer/logout', [BuyerController::class, 'Logout'])->name("Logout")->middleware('ValidBuyerLogin');

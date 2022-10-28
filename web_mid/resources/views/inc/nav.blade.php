@@ -1,16 +1,16 @@
-<header class="shadow navbar navbar-expand-lg">
-    <ul class="navbar-nav mr-auto nav-bar">
-            <li class="nav-item">
-            <a href="/login" class="nav-link">Login</a>
-            </li>    
-            
-            <li class="nav-item">
-            <a href="/registration/buyer" class="nav-link">Registration as Buyer</a>
-            </li>
-            
-            <li class="nav-item">
-            <a href="/registration/seller" class="nav-link">Registration as Seller</a>
-            </li>
-    </ul>
- 
-</header>
+
+<header>
+    <div class="nav-bar">
+        <a href="#" class="logo">RMG Solution</a>
+    
+        <div class="navigation">
+            <div class="nav-items">
+                <a href="/">Home</a>
+                <a href="">How It Works</a>
+                <a href="">About Us</a>
+                <a href="/login">Login</a>
+                <a href=""><span class="btn btn-success">Post a Job</span></a>
+            </div>
+        </div>
+    </div>
+  </header>

@@ -105,6 +105,11 @@ html{
     border: aliceblue;
 }
 
+.reg-border input[type=submit]:hover{
+    font-weight: 500;
+    scale: 1.02;
+}
+
 .navbar{
     z-index: 99999;
     width: 100%;
@@ -113,10 +118,16 @@ html{
     left: 0;
     backdrop-filter: blur(20px);
     transition: .6s ease;
+    
   }
 
 .navbar li{
     font-weight: 400;
+    
+}
+
+.navbar li a{
+    color: rgb(163, 163, 163);
 }
 
 label{

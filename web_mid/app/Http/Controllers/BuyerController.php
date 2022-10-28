@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\all_user;
 use App\Models\buyer;
+use App\Models\login;
 use App\Rules\AgeRule;
 use App\Rules\EmailRule;
 use App\Rules\FileSaveRule;
 use App\Rules\PhoneRule;
 use Faker\Core\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
 class BuyerController extends Controller
@@ -208,5 +210,28 @@ class BuyerController extends Controller
         $user->save();
 
         return redirect()->route("Home");
+    }
+
+    public function BuyerDashboard()
+    {
+        return view("buyer.Dashboard");
+    }
+
+    public function Logout()
+    {
+
+        $user = login::where('token', session()->get("token"))->first();
+        if ($user) {
+            $user->logout_time = date('h:i:s a m/d/Y', strtotime(date('h:i:s a m/d/Y')));
+            $user->save();
+        }
+
+        session()->forget("token");
+        session()->forget("email");
+        session()->forget("entity");
+
+        Cookie::queue(Cookie::forget("token"));
+
+        return redirect()->route("Login");
     }
 }

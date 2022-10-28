@@ -10,13 +10,39 @@ use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
-    public function Login()
+    function get_client_ip()
+    {
+        $ipaddress = '';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if (isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if (isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if (isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+        return $ipaddress;
+    }
+
+    public function Login(Request $request)
     {
         if (Cookie::has('token')) {
             $value = Cookie::get('token');
             $instance = login::where('token', $value)->first();
             if (!empty($instance)) {
+
                 $r = "Already logged in. " . $instance->user->email;
+                session()->put("entity", $instance->user->entity);
+                session()->put("email", $instance->user->email);
+                session()->put("token", $value);
+
+                return redirect()->route("BuyerDashboard");
             } else {
                 $r = "Not logged in.";
             }
@@ -26,6 +52,11 @@ class LoginController extends Controller
 
         // $user = all_user::where('email', "rh140035@gmail.com")->first();
         // dd($user->logged_session);
+        //dd($request->getClientIp());
+
+        //$ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
+        //dd(exec('getmac'));
+
         return view('login')->with("output", $r);
     }
 
@@ -52,6 +83,7 @@ class LoginController extends Controller
                 session()->put("email", $user->email);
                 session()->put("token", $token);
 
+
                 //Set cookie: Cookie::queue(Cookie::make('cookieName', 'value', $minutes));
                 // Get cookie: $value = $request->cookie('cookieName'); or $value = Cookie::get('cookieName');
                 // Forget/remove cookie: Cookie::queue(Cookie::forget('cookieName'));
@@ -68,6 +100,7 @@ class LoginController extends Controller
                 // } else {
                 //     return redirect()->route('Userlist');
                 // }
+                return redirect()->route("BuyerDashboard");
             } else {
                 $r = "Incorrect Password";
             }
