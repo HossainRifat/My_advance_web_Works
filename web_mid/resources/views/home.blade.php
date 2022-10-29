@@ -25,7 +25,7 @@
     @section('content')
     <section class="section main-banner" id="top" data-section="section1">
         <video autoplay muted loop id="bg-video">
-            <source src="/img/course-video.mp4" type="video/mp4" />
+            <source src="/assets/images/course-video.m4v" type="video/m4v" />
         </video>
   
         <div class="video-overlay header-text">
