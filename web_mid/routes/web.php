@@ -3,6 +3,7 @@
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,5 @@ Route::post('/registration03/buyer', [BuyerController::class, 'Registration03Sub
 Route::get('/buyer/dashboard', [BuyerController::class, 'BuyerDashboard'])->name("BuyerDashboard")->middleware('ValidBuyerLogin');
 
 Route::get('/buyer/logout', [BuyerController::class, 'Logout'])->name("Logout")->middleware('ValidBuyerLogin');
+
+Route::get('/buyer/post', [PostController::class, 'Post'])->name("Post")->middleware('ValidBuyerLogin');

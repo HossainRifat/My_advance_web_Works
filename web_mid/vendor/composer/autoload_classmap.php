@@ -32,6 +32,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
+    'App\\Http\\Middleware\\ValidBuyerLogin' => $baseDir . '/app/Http/Middleware/ValidBuyerLogin.php',
     'App\\Http\\Middleware\\ValidReg02' => $baseDir . '/app/Http/Middleware/ValidReg02.php',
     'App\\Http\\Middleware\\ValidReg03' => $baseDir . '/app/Http/Middleware/ValidReg03.php',
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',

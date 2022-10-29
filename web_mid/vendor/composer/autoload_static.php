@@ -556,6 +556,7 @@ class ComposerStaticInitc54a5a7fc2075e2ff8e464013ae1dc75
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
+        'App\\Http\\Middleware\\ValidBuyerLogin' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidBuyerLogin.php',
         'App\\Http\\Middleware\\ValidReg02' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidReg02.php',
         'App\\Http\\Middleware\\ValidReg03' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidReg03.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',

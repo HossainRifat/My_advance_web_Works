@@ -345,6 +345,49 @@
                           </td>
                         </tr>
                         <tr>
+                            <td>
+                              <div class="d-flex px-2 py-1">
+                                <div>
+                                  {{-- <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify"> --}}
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                  <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="avatar-group mt-2">
+                                <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Tompson">
+                                  <img src="../assets/img/team-4.jpg" alt="user1">
+                                </a>
+                                <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Romina Hadid">
+                                  <img src="../assets/img/team-3.jpg" alt="user2">
+                                </a>
+                                <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alexander Smith">
+                                  <img src="../assets/img/team-4.jpg" alt="user3">
+                                </a>
+                                <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
+                                  <img src="../assets/img/team-1.jpg" alt="user4">
+                                </a>
+                              </div>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                              <span class="text-xs font-weight-bold"> $20,500 </span>
+                            </td>
+                            <td class="align-middle">
+                              <div class="progress-wrapper w-75 mx-auto">
+                                <div class="progress-info">
+                                  <div class="progress-percentage">
+                                    <span class="text-xs font-weight-bold">100%</span>
+                                  </div>
+                                </div>
+                                <div class="progress">
+                                  <div class="progress-bar bg-gradient-success w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        <tr>
                           <td>
                             <div class="d-flex px-2 py-1">
                               <div>
