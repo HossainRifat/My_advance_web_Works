@@ -40,3 +40,4 @@ Route::get('/buyer/dashboard', [BuyerController::class, 'BuyerDashboard'])->name
 Route::get('/buyer/logout', [BuyerController::class, 'Logout'])->name("Logout")->middleware('ValidBuyerLogin');
 
 Route::get('/buyer/post', [PostController::class, 'Post'])->name("Post")->middleware('ValidBuyerLogin');
+Route::post('/buyer/post', [PostController::class, 'PostSubmit'])->name("PostSubmit")->middleware('ValidBuyerLogin');

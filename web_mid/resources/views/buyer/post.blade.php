@@ -15,14 +15,14 @@
 
     <div class="container-main">
         <div class="post-background-image"></div>
-        <div class="post-container shadow-sm text-dark">
+        <div class="post-container shadow text-dark">
             <div class="top-text">
                 <h2>RMG Solution</h2>
                 <h3>Tell us what you need done</h3>
                 <h6>Contact skilled freelancers within minutes. View profiles, ratings, portfolios and chat with them. Pay the freelancer only when you are 100% satisfied with their work.</h6>
             </div>
             <div class="form-conatiner">
-                <form  method="post" action="/registration/buyer" enctype="multipart/form-data">
+                <form  method="post" action="/buyer/post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <label>Choose a name for your project</label><br>
                     <input type="text" placeholder="Project title" name="title" value="{{old('title')}}">
@@ -31,9 +31,9 @@
                             <p>{{$errors->first("title")}}</p>
                         </span>
                     @endif
-                    <label>Choose catagory</label>
-                    <select name="catagory">
-                        <option value="" disabled selected>Choose your product catagory</option>
+                    <label>Choose category</label>
+                    <select name="category">
+                        <option value="" disabled selected>Choose your product category</option>
                         <option value="T-shirt">T-shirt</option>
                         <option value="Casual Shirt">Casual Shirt</option>
                         <option value="Jursey">Jursey</option>
@@ -51,7 +51,11 @@
                         <option value="Raincoat">Raincoat</option>
                         <option value="Ladies Dress">Ladies Dress</option>
                       </select>
-                      
+                      @if ($errors->has('category'))
+                        <span>
+                            <p>{{$errors->first("category")}}</p>
+                        </span>
+                    @endif
 
                     <label>Tell us more about your project</label>
                     <textarea name="description" rows="5" placeholder="Describe your product including color codes, fabrics and design here..">{{old('description')}}</textarea>
@@ -68,18 +72,23 @@
                         </span>
                     @endif
 
-                    <label>Quantity</label><br>
-                    <input type="text" placeholder="Quantity of product in number" name="quantity" value="{{old('quantity')}}">
-                    @if ($errors->has('quantity'))
+                    <label>Quantity in different sizes</label><br>
+                    <input type="number" placeholder="M" name="m" value="{{old('m')}}">
+                    <input type="number" placeholder="L" name="l" value="{{old('l')}}">
+                    <input type="number" placeholder="XL" name="xl" value="{{old('xl')}}">
+                    <input type="number" placeholder="XXL" name="xxl" value="{{old('xxl')}}">
+                    <input type="number" placeholder="XXXL" name="xxxl" value="{{old('xxxl')}}">
+
+                    @if ($errors->has('m') || $errors->has('l') || $errors->has('xl') || $errors->has('xxl') || $errors->has('xxxl'))
                         <span>
-                            <p>{{$errors->first("quantity")}}</p>
+                            <p>{{$errors->first("m")}} {{$errors->first("l")}} {{$errors->first("xl")}} {{$errors->first("xxl")}} {{$errors->first("xxxl")}}</p>
                         </span>
                     @endif
                     <label>Price per unit</label>
-                    <input type="text" placeholder="Price per unit you want to offer in number" name="email" value="{{old('email')}}">
-                    @if ($errors->has('email'))
+                    <input type="text" placeholder="Price per unit you want to offer in number" name="price" value="{{old('price')}}">
+                    @if ($errors->has('price'))
                         <span>
-                            <p>{{$errors->first("email")}}</p>
+                            <p>{{$errors->first("price")}}</p>
                         </span>
                     @endif
                     
@@ -92,7 +101,7 @@
                     @endif
                     
                     
-                    <input type="submit" name="submit" value="Next">
+                    <input type="submit" name="submit" value="Post">
                 </form>
             </div>
         </div>

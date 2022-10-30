@@ -28,7 +28,7 @@ class BuyerController extends Controller
                 "email" => ["required", "email", new EmailRule],
                 "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
                 "password" => "required | min:8 | max:50",
-                "photo" => ["required", "mimes:jpg,png,jpeg"]
+                "design" => ["required", "mimes:jpg,png,jpeg"]
             ],
             [
                 "password.min" => "Password should be at least 8 character.",
@@ -222,7 +222,7 @@ class BuyerController extends Controller
 
         $user = login::where('token', session()->get("token"))->first();
         if ($user) {
-            $user->logout_time = date('h:i:s a m/d/Y', strtotime(date('h:i:s a m/d/Y')));
+            $user->logout_time = date('h:i:s A m/d/Y', strtotime(date('h:i:s A m/d/Y')));
             $user->save();
         }
 
