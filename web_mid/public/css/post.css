@@ -1,5 +1,6 @@
 .container-main{
     margin-bottom: 20px;
+    transition: .5sec ease;
 }
 
 .post-background-image{

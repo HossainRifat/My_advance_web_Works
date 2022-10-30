@@ -9,4 +9,14 @@ class post extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo(buyer::class, 'buyer_id', 'id');
+    }
+
+    public function bid()
+    {
+        return $this->hasMany(bid::class, 'post_id', 'id');
+    }
 }

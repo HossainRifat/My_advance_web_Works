@@ -35,7 +35,7 @@ class PostController extends Controller
                 "xxl" => ["required", "numeric", new quantiRule],
                 "xxxl" => ["required", "numeric", new quantiRule, new quantiRule2],
                 "description" => ["required", "min:5", "max:1000"],
-                "design" => ["required", "mimes:jpg,png,jpeg"]
+                "design" => ["required", "mimes:jpg,png,jpeg,webp"]
             ],
             [
                 // "m.min", "xl.min", "xxl.min", "xxl.min", "l.min" => "You have to order at least 20 per size or you can put 0 if you don't want any particular size.",
@@ -43,7 +43,7 @@ class PostController extends Controller
                 // "xl.min" => "You have to order at least 20.",
                 // "xxl.min" => "You have to order at least 20.",
                 // "xxl.min" => "You have to order at least 20.",
-                "design.mines" => "Only jpg, jpeg, png files are allowed."
+                "design.mines" => "Only jpg, jpeg, png, webp files are allowed."
             ]
 
         );
@@ -72,6 +72,17 @@ class PostController extends Controller
                 return redirect()->route('Post');
             }
             return redirect()->route('Post');
+        }
+    }
+
+    public function GetPosts()
+    {
+        $post = post::where("status", "post")->get();
+        //dd($user);
+        if ($post) {
+            return view("buyer.posts")->with("all_post", $post);
+        } else {
+            return view("buyer.posts");
         }
     }
 }
