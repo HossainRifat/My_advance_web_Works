@@ -44,6 +44,7 @@ a{
 
 .posts-short{
     margin: 20px;
+    
 }
 
 .posts-hed{
@@ -62,6 +63,7 @@ a{
 .posts-short li a{
     font-size: small;
     font-weight: 500;
+    
 }
 
 .posts-short li a:hover{

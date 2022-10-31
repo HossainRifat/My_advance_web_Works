@@ -244,14 +244,14 @@
             </div>
             <div class="posts-short">     
             <ul>
-                <li><a href="" class="text-dark">Title A > Z</a></li>
-                <li><a href="" class="text-dark">Title Z > A</a></li>
-                <li><a href="" class="text-dark">Category A > Z</a></li>
-                <li><a href="" class="text-dark">Category Z > A</a></li>
-                <li><a href="" class="text-dark">Offered price 1 > 9</a></li>
-                <li><a href="" class="text-dark">Offered price 9 > 1</a></li>
-                <li><a href="" class="text-dark">Quantity 1 > 9</a></li>
-                <li><a href="" class="text-dark">Quantity 9 > 1</a></li>
+                <li> <input class="form-check-input" type="checkbox"> <a href="" class="text-dark">Title A > Z</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Title Z > A</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Category A > Z</a></li>
+                <li><input class="form-check-input" type="checkbox"> <a href="" class="text-dark">Category Z > A</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Offered price 1 > 9</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Offered price 9 > 1</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 1 > 9</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 9 > 1</a></li>
             </ul>
             </div>
             <div class="posts-hed">
@@ -259,13 +259,13 @@
             </div>
             <div class="posts-short">     
             <ul>
-                <li><a href="" class="text-dark">Price 1000 - 10,000</a></li>
-                <li><a href="" class="text-dark">Price 10,000 - 100,000</a></li>
-                <li><a href="" class="text-dark">Price 100,000+</a></li>
-                <li><a href="" class="text-dark">Quantity 100 - 500</a></li>
-                <li><a href="" class="text-dark">Quantity 500 - 1000</a></li>
-                <li><a href="" class="text-dark">Quantity 1000 - 2000</a></li>
-                <li><a href="" class="text-dark">Quantity 2000+</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Price 1000 - 10,000</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Price 10,000 - 100,000</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Price 100,000+</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 100 - 500</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 500 - 1000</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 1000 - 2000</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 2000+</a></li>
             </ul>
             </div>
         </div>
