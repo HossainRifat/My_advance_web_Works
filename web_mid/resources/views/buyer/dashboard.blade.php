@@ -120,7 +120,7 @@
                   </div>
                   <div class="text-end pt-1">
                     <p class="text-sm mb-0 text-capitalize">My Orders</p>
-                    <h4 class="mb-0">{{$order}}</h4>
+                    <h4 class="mb-0">{{$active_order}}</h4>
                   </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -174,8 +174,8 @@
                     <div class="col-lg-6 col-7">
                       <h6>My Orders</h6>
                       <p class="text-sm mb-0">
-                        <i class="fa fa-check text-info" aria-hidden="true"></i>
-                        <span class="font-weight-bold ms-1">30 done</span> in total
+                        <i class="fa fa-check text-info" aria-hidden="true"></i> Currently active
+                        <span class="font-weight-bold ms-1"> {{$active_order}}</span> order(s)
                       </p>
                     </div>
                     <div class="col-lg-6 col-5 my-auto text-end">
@@ -197,18 +197,53 @@
                     <table class="table align-items-center mb-0">
                       <thead class="sticky-top">
                         <tr>
-                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Companies</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Products</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Deadline</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Completion</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        @foreach ($user->my_order as $item)
+                              @if ($item->status != "done")
+                              <tr>
+                                <td>
+                                  <div class="d-flex px-2 py-1">
+                                    <div>
+                                      {{-- <img src="../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd"> --}}
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                      <h6 class="mb-0 text-sm">{{ucfirst(trans($item->title))}}</h6>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td>
+                                  <span class="text-xs font-weight-bold">{{$item->delivery_date}}</span>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                  <span class="text-xs font-weight-bold">${{$item->price}}</span>
+                                </td>
+                                <td class="align-middle">
+                                  <div class="progress-wrapper w-75 mx-auto">
+                                    <div class="progress-info">
+                                      <div class="progress-percentage">
+                                        <span class="text-xs font-weight-bold">{{$item->status}}%</span>
+                                      </div>
+                                    </div>
+                                    <div class="progress">
+                                      <div class="progress-bar bg-gradient-info w-{{$item->status}}" role="progressbar" aria-valuenow={{$item->status}} aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              @endif
+                            
+                        @endforeach
+                        {{-- <tr>
                           <td>
                             <div class="d-flex px-2 py-1">
                               <div>
-                                {{-- <img src="../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd"> --}}
+                                <img src="../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm me-3" alt="xd">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                 <h6 class="mb-0 text-sm">Material XD Version</h6>
@@ -238,7 +273,7 @@
                           <td>
                             <div class="d-flex px-2 py-1">
                               <div>
-                                {{-- <img src="../assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian"> --}}
+                                <img src="../assets/img/small-logos/logo-atlassian.svg" class="avatar avatar-sm me-3" alt="atlassian">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                 <h6 class="mb-0 text-sm">Add Progress Track</h6>
@@ -268,7 +303,7 @@
                           <td>
                             <div class="d-flex px-2 py-1">
                               <div>
-                                {{-- <img src="../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7"> --}}
+                                <img src="../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm me-3" alt="team7">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                 <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
@@ -281,7 +316,7 @@
                                 <img src="../assets/img/team-3.jpg" alt="team8">
                               </a>
                               <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Jessica Doe">
-                                {{-- <img src="../assets/img/team-1.jpg" alt="team9"> --}}
+                                <img src="../assets/img/team-1.jpg" alt="team9">
                               </a>
                             </div>
                           </td>
@@ -305,7 +340,7 @@
                           <td>
                             <div class="d-flex px-2 py-1">
                               <div>
-                                {{-- <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify"> --}}
+                                <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                 <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
@@ -348,7 +383,7 @@
                             <td>
                               <div class="d-flex px-2 py-1">
                                 <div>
-                                  {{-- <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify"> --}}
+                                  <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm me-3" alt="spotify">
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
                                   <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
@@ -391,7 +426,7 @@
                           <td>
                             <div class="d-flex px-2 py-1">
                               <div>
-                                {{-- <img src="../assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira"> --}}
+                                <img src="../assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm me-3" alt="jira">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                 <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
@@ -425,7 +460,7 @@
                           <td>
                             <div class="d-flex px-2 py-1">
                               <div>
-                                {{-- <img src="../assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision"> --}}
+                                <img src="../assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm me-3" alt="invision">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                 <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
@@ -457,7 +492,7 @@
                               </div>
                             </div>
                           </td>
-                        </tr>
+                        </tr> --}}
                       </tbody>
                     </table>
                   </div>
@@ -467,7 +502,7 @@
             <div class="col-lg-4 col-md-6">
               <div class="card h-100 ">
                 <div class="card-header pb-0">
-                  <h6>Orders overview</h6>
+                  <h6>Posts overview</h6>
                   <p class="text-sm">
                     <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
                     <span class="font-weight-bold">24%</span> this month
@@ -475,7 +510,25 @@
                 </div>
                 <div class="card-body p-3">
                   <div class="timeline timeline-one-side order-history-body">
-                    <div class="timeline-block mb-3">
+                    @foreach ($my_post as $item)
+                    @if ($item->bid)
+                    @foreach ($item->bid as $item2)  
+                      @if ($item2->status == "post")
+                      <div class="timeline-block mb-3">
+                        <span class="timeline-step">
+                          <i class="material-icons text-success text-gradient">notifications</i>
+                        </span>
+                        <div class="timeline-content">
+                          <h6 class="text-dark text-sm font-weight-bold mb-0">${{$item2->price}}, {{$item2->seller->first_name}} {{$item2->seller->last_name}}</h6>
+                          <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{$item2->bid_date}}</p>
+                        </div>
+                      </div>
+                      @endif
+                    @endforeach
+                    @endif
+                    
+                    @endforeach
+                    {{-- <div class="timeline-block mb-3">
                       <span class="timeline-step">
                         <i class="material-icons text-success text-gradient">notifications</i>
                       </span>
@@ -529,7 +582,7 @@
                         <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">17 DEC</p>
                       </div>
                       
-                    </div>
+                    </div> --}}
                   </div>
                 </div>
               </div>

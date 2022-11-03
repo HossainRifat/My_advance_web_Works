@@ -9,4 +9,9 @@ class bid extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function seller()
+    {
+        return $this->belongsTo(seller::class, 'seller_id', 'id');
+    }
 }

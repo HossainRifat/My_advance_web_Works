@@ -219,13 +219,17 @@ class BuyerController extends Controller
             if ($user) {
                 $checkout = 0;
                 $money = 0;
+                $active_order = 0;
                 if ($user->my_order) {
                     foreach ($user->my_order as $item) {
                         $checkout += count($item->my_checkout);
                         $money += (int)$item->price;
+                        if ($item->status != "done") {
+                            $active_order += 1;
+                        }
                     }
                 }
-                return view("buyer.Dashboard")->with("user", $user)->with("post", count($user->my_post))->with("order", count($user->my_order))->with("checkout", $checkout)->with("money", $money);
+                return view("buyer.Dashboard")->with("user", $user)->with("post", count($user->my_post))->with("order", count($user->my_order))->with("checkout", $checkout)->with("money", $money)->with("active_order", $active_order)->with("my_post", $user->my_post);
             } else {
                 return redirect()->route("Login");
             }

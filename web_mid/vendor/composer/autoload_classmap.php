@@ -61,6 +61,8 @@ return array(
     'App\\Rules\\EmailRule' => $baseDir . '/app/Rules/EmailRule.php',
     'App\\Rules\\FileSaveRule' => $baseDir . '/app/Rules/FileSaveRule.php',
     'App\\Rules\\PhoneRule' => $baseDir . '/app/Rules/PhoneRule.php',
+    'App\\Rules\\quantiRule' => $baseDir . '/app/Rules/quantiRule.php',
+    'App\\Rules\\quantiRule2' => $baseDir . '/app/Rules/quantiRule2.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Brick\\Math\\BigDecimal' => $vendorDir . '/brick/math/src/BigDecimal.php',
     'Brick\\Math\\BigInteger' => $vendorDir . '/brick/math/src/BigInteger.php',

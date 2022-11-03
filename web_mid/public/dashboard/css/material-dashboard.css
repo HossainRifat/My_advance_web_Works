@@ -27704,6 +27704,7 @@ pre[class*="language-"] {
 /*# sourceMappingURL=dashboard-free.css.map */
 
 .dashboard-table{
+  min-height: 55vh;
   max-height: 55vh;
   scroll-behavior: smooth;
 }
