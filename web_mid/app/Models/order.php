@@ -9,4 +9,9 @@ class order extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function my_checkout()
+    {
+        return $this->hasMany(checkout::class, 'order_id', 'id');
+    }
 }

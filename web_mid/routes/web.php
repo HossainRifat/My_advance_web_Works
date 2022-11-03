@@ -42,4 +42,4 @@ Route::get('/buyer/logout', [BuyerController::class, 'Logout'])->name("Logout")-
 Route::get('/buyer/post', [PostController::class, 'Post'])->name("Post")->middleware('ValidBuyerLogin');
 Route::post('/buyer/post', [PostController::class, 'PostSubmit'])->name("PostSubmit")->middleware('ValidBuyerLogin');
 
-Route::get('/buyer/posts', [PostController::class, 'GetPosts'])->name("GetPosts")->middleware('ValidBuyerLogin');
+Route::get('/buyer/posts/{name}/{id}', [PostController::class, 'GetPosts'])->name("GetPosts")->middleware('ValidBuyerLogin');

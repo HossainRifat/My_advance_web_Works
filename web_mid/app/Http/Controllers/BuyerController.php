@@ -214,7 +214,24 @@ class BuyerController extends Controller
 
     public function BuyerDashboard()
     {
-        return view("buyer.Dashboard");
+        if (session()->has("email")) {
+            $user = buyer::where('email', session()->get("email"))->first();
+            if ($user) {
+                $checkout = 0;
+                $money = 0;
+                if ($user->my_order) {
+                    foreach ($user->my_order as $item) {
+                        $checkout += count($item->my_checkout);
+                        $money += (int)$item->price;
+                    }
+                }
+                return view("buyer.Dashboard")->with("user", $user)->with("post", count($user->my_post))->with("order", count($user->my_order))->with("checkout", $checkout)->with("money", $money);
+            } else {
+                return redirect()->route("Login");
+            }
+        } else {
+            return redirect()->route("Login");
+        }
     }
 
     public function Logout()

@@ -40,7 +40,8 @@
 
                                 <ul class="list-inline list-inline-dotted mb-0">
                                     <li class="list-inline-item">Post by <a href="#" data-abc="true">{{$item->user->first_name}} {{$item->user->last_name}}</a></li><br>
-                                    <li class="list-inline-item"><a href="#" data-abc="true">{{$item->post_date}}</a></li>
+                                    <li><p data-abc="true">{{$item->post_date}}</p></li>
+                                    <li><p>From, {{$item->user->address}}</p></li>
                                 </ul>
                             </div>
 
@@ -56,9 +57,9 @@
                                     }
                                     $total_bid = count($item->bid);
                                     echo('<h3 class="mb-0 font-weight-semibold">$'.$total_amount.'</h3>');
-                                    echo('<div class="text-muted"> Product count <b>'.$total_product.'</b></div>');
-                                    echo('<div class="text-muted"> Delivary '.$item->expire_date.'</div>');
-                                    echo('<div class="text-muted"> Bid count '.$total_bid.'</div>');
+                                    echo('<div class="text-muted"> Product count <br> <b>'.$total_product.'</b></div>');
+                                    echo('<div class="text-muted"> Delivary <br> <b>'.$item->expire_date.'</b> </div>');
+                                    echo('<div class="text-muted"> Bid count <br> <b>'.$total_bid.'</b> </div>');
                                 ?>
                                 
 
@@ -69,10 +70,7 @@
                                     <i class="fa fa-star"></i>
 
                                 </div> --}}
-
-                                <br>
-                                <br>
-
+                                
                                 <button type="button"><i class="icon-cart-add"></i>Details</button>
                             </div>
                         </div>
@@ -244,14 +242,14 @@
             </div>
             <div class="posts-short">     
             <ul>
-                <li> <input class="form-check-input" type="checkbox"> <a href="" class="text-dark">Title A > Z</a></li>
-                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Title Z > A</a></li>
-                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Category A > Z</a></li>
-                <li><input class="form-check-input" type="checkbox"> <a href="" class="text-dark">Category Z > A</a></li>
-                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Offered price 1 > 9</a></li>
-                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Offered price 9 > 1</a></li>
-                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 1 > 9</a></li>
-                <li><input class="form-check-input" type="checkbox"><a href="" class="text-dark">Quantity 9 > 1</a></li>
+                <li> <input class="form-check-input" type="checkbox"><a href="/buyer/posts/title/AtoZ" class="text-dark">Title A > Z</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="/buyer/posts/title/ZtoA" class="text-dark">Title Z > A</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="/buyer/posts/cat/AtoZ" class="text-dark">Category A > Z</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="/buyer/posts/cat/ZtoA" class="text-dark">Category Z > A</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="/buyer/posts/date/1to9" class="text-dark">Delivary date 1 > 9</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="/buyer/posts/date/9to1" class="text-dark">Delivary date 9 > 1</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="/buyer/posts/quantity/1to9" class="text-dark">Quantity 1 > 9</a></li>
+                <li><input class="form-check-input" type="checkbox"><a href="/buyer/posts/quantity/9to1" class="text-dark">Quantity 9 > 1</a></li>
             </ul>
             </div>
             <div class="posts-hed">
