@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/buyerDash.css">
     <title>Dashboard</title>
-    <link href="../dashboard/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../dashboard/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="/dashboard/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="/dashboard/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
-    <link id="pagestyle" href="../dashboard/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="/dashboard/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
 </head>
 <body class="g-sidenav-show  bg-gray-200">
     @section('content')
@@ -56,7 +56,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark font-weight-bold " href="../pages/profile.html">
+              <a class="nav-link text-dark font-weight-bold " href="/buyer/profile/get">
                 <div class="text-dark font-weight-bold text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">person</i>
                 </div>

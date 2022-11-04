@@ -255,4 +255,15 @@ class BuyerController extends Controller
 
         return redirect()->route("Login");
     }
+
+    public function Profile(Request $request)
+    {
+
+        if (session()->has("email")) {
+            $user = buyer::where('email', session()->get("email"))->first();
+            if ($request->id == "get") {
+                return view("buyer.profile")->with("user", $user);
+            }
+        }
+    }
 }

@@ -21956,7 +21956,7 @@ body.dark-version {
 }
 
 .page-header .container {
-  z-index: 1;
+  z-index: 0;
 }
 
 .page-header video {
@@ -27726,4 +27726,32 @@ aside{
 
 .main-content{
   margin-top: 80px;
+}
+
+
+.card-body form input[type=text], input[type=date], input[type=file]{
+  margin-bottom: 5px;
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  border-radius: 6px;
+  border: solid;
+  font-size: small;
+  border-color: rgb(231, 232, 230);
+  background-color: rgb(247, 247, 247);
+}
+
+.card-body form textarea{
+  width: 100%;
+  padding: 5px;
+  border-radius: 6px;
+  border: solid;
+  font-size: small;
+  border-color: rgb(231, 232, 230);
+  background-color: rgb(247, 247, 247);
+  resize: vertical;
+}
+
+.card-body form span{
+  color: red;
 }
