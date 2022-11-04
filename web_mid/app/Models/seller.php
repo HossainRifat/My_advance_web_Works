@@ -9,4 +9,9 @@ class seller extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function company()
+    {
+        return $this->hasOne(company::class, 'seller_id', 'id');
+    }
 }

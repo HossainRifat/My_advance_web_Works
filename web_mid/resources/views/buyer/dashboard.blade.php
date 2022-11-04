@@ -194,7 +194,7 @@
                 </div>
                 <div class="card-body px-0 pb-2">
                   <div class="table-responsive dashboard-table">
-                    <table class="table align-items-center mb-0">
+                    <table class="table align-items-center mb-0 text-dark">
                       <thead class="sticky-top">
                         <tr>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Products</th>
@@ -218,16 +218,16 @@
                                   </div>
                                 </td>
                                 <td>
-                                  <span class="text-xs font-weight-bold">{{$item->delivery_date}}</span>
+                                  <span class="text-xs font-weight-bold text-secondary">{{$item->delivery_date}}</span>
                                 </td>
                                 <td class="align-middle text-center text-sm">
-                                  <span class="text-xs font-weight-bold">${{$item->price}}</span>
+                                  <span class="text-xs font-weight-bold text-secondary">${{$item->price}}</span>
                                 </td>
                                 <td class="align-middle">
                                   <div class="progress-wrapper w-75 mx-auto">
                                     <div class="progress-info">
                                       <div class="progress-percentage">
-                                        <span class="text-xs font-weight-bold">{{$item->status}}%</span>
+                                        <span class="text-xs font-weight-bold text-secondary">{{$item->status}}%</span>
                                       </div>
                                     </div>
                                     <div class="progress">

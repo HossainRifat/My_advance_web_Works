@@ -258,12 +258,45 @@ class BuyerController extends Controller
 
     public function Profile(Request $request)
     {
-
         if (session()->has("email")) {
             $user = buyer::where('email', session()->get("email"))->first();
-            if ($request->id == "get") {
-                return view("buyer.profile")->with("user", $user);
-            }
+            return view("buyer.profile")->with("user", $user)->with("data", $request->id);
+        } else {
+            return redirect()->route("Login");
+        }
+    }
+
+    public function ProfileSubmit(Request $data)
+    {
+
+        //dd($data);
+        $this->validate(
+            $data,
+            [
+                "first_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
+                "last_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
+                "dob" => ["required", "date", new AgeRule],
+
+                "email" => ["required", "email"],
+                "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
+                "nid" => ["required", "max:50"],
+                "passport" => ["max:50"],
+                "phone" => ["required", "max:50"],
+
+            ]
+        );
+        $buyer = buyer::where('email', session()->get("email"))->first();
+        if ($buyer) {
+            $buyer->first_name = $data->first_name;
+            $buyer->last_name = $data->last_name;
+            $buyer->dob = $data->dob;
+            $buyer->email = $data->email;
+            $buyer->address = $data->address;
+            $buyer->nid = $data->nid;
+            $buyer->passport = $data->passport;
+            $buyer->phone = $data->phone;
+            $buyer->save();
+            return redirect()->route("Profile", "get");
         }
     }
 }

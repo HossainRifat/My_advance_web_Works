@@ -100,7 +100,7 @@
               <div class="col-auto my-auto">
                 <div class="h-100">
                   <h5 class="mb-1">
-                    Richard Davis
+                    {{$user->first_name}} {{$user->last_name}}
                   </h5>
                   <p class="mb-0 font-weight-normal text-sm">
                     CEO / Co-Founder
@@ -109,8 +109,11 @@
               </div>
               
             </div>
+
+            @if ($data == "get")
             <div class="row">
               <div class="row">
+              
                 <div class="col-12 col-xl-6">
                   <div class="card profile-card-plain shadow-none border-0 h-100">
                     <div class="profile-header pb-0 p-3">
@@ -122,17 +125,17 @@
                     </div>
                     <div class="profile-card p-3">
     
-                      <form action="">
+                      
                         <p class="text-sm">
                           Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
                         </p>
                         <hr class="horizontal gray-light my-4">
                         <ul class="list-group">
-                          <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">First Name <span>*</span></strong> &nbsp; <input type="text" name="first_name" value="{{$user->first_name}}"></li>
-                          <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Last Name <span>*</span></strong> &nbsp; <input type="text" name="last_name" value="{{$user->last_name}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile <span>*</span></strong> &nbsp; <input type="text" name="phone" readonly value="{{$user->phone}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email <span>*</span></strong> &nbsp; <input type="text" name="phone" value="{{$user->email}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Date of birth <span>*</span></strong> &nbsp; <input type="date" name="dob" value="{{$user->dob}}"></li>
+                          <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark" readonly>First Name <span>*</span></strong> &nbsp; <input type="text" name="first_name" value="{{$user->first_name}}" readonly></li>
+                          <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Last Name <span>*</span></strong> &nbsp; <input type="text" name="last_name" value="{{$user->last_name}}" readonly></li>
+                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile <span>*</span></strong> &nbsp; <input type="text" name="phone" readonly value="{{$user->phone}}" readonly></li>
+                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email <span>*</span></strong> &nbsp; <input type="text" name="phone" value="{{$user->email}}" readonly></li>
+                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Date of birth <span>*</span></strong> &nbsp; <input type="date" name="dob" value="{{$user->dob}}" style="border: solid; border-color: rgb(231, 232, 230);" readonly></li>
                           
                           <li class="list-group-item border-0 ps-0 pb-0">
                             <strong class="text-dark text-sm">Social:</strong> &nbsp;
@@ -147,7 +150,7 @@
                             </a>
                           </li>
                         </ul>
-                      </form>
+                      
                       
                     </div>
                   </div>
@@ -160,37 +163,156 @@
                           <!-- <h6 class="mb-0">Profile Information</h6> -->
                         </div>
                         <div class="col-md-4 text-end">
-                          <a href="javascript:;">
+                          <a href="/buyer/profile/edit">
                             <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
                           </a>
                         </div>
                       </div>
                     </div>
                     <div class="profile-card p-1">
-    
-                      <form action="">
                         <!-- <p class="text-sm">
                           <textarea name="" rows="3" style="width: 98%;">Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).</textarea>
                           
                         </p> -->
                         <!-- <hr class="horizontal gray-light my-4"> -->
                         <ul class="list-group">
-                          <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">National identity number <span>*</span></strong> &nbsp; <input type="text" name="nid" value="{{$user->nid}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Passport number</strong> &nbsp; <input type="text" name="passport" value="{{$user->passport}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Profile picture <span>*</span></strong> &nbsp; <input type="file" name="photo" value="{{$user->photo}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">My accounts documents <span>*</span></strong> &nbsp; <input type="file" name="account" value="{{$user->account}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">My business documents</strong> &nbsp; <input type="file" name="documents" value="{{$user->documents}}"></li>
-                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address <span>*</span></strong> &nbsp; <textarea name="address" rows="3" style="width: 100%;">{{$user->address}}</textarea></li>
-                        </ul>
-                      </form>
-                      
+                          <li class="list-group-item border-0 ps-0 pt-7 text-sm"><strong class="text-dark">National identity number <span>*</span></strong> &nbsp; <input type="text" name="nid" value="{{$user->nid}}" readonly></li>
+                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Passport number</strong> &nbsp; <input type="text" name="passport" value="{{$user->passport}}" readonly></li>
+                          {{-- <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Profile picture <span>*</span></strong> &nbsp; <input type="file" name="photo" value="{{$user->photo}}" class="form-control form-control-lg" id="formFile" style="padding-top: 8px;"></li>
+                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">My accounts documents <span>*</span></strong> &nbsp; <input type="file" name="account" value="{{$user->account}}" class="form-control form-control-lg" id="formFile" style="padding-top: 8px;"></li>
+                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">My business documents</strong> &nbsp; <input type="file" name="documents" value="{{$user->documents}}" class="form-control form-control-lg" id="formFile" style="padding-top: 8px;"></li> --}}
+                          <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address <span>*</span></strong> &nbsp; <textarea name="address" rows="6" style="width: 100%;" readonly>{{$user->address}}</textarea></li>
+                        </ul>                      
                     </div>
                   </div>
-                </div>
-                
-                
+                </div>      
               </div>
             </div>
+            @else
+                <form method="post" action="/buyer/profile" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  <div class="row">
+                    <div class="row">
+                    
+                      <div class="col-12 col-xl-6">
+                        <div class="card profile-card-plain shadow-none border-0 h-100">
+                          <div class="profile-header pb-0 p-3">
+                            <div class="row">
+                              <div class="col-md-8 d-flex align-items-center">
+                                <h6 class="mb-0">Profile Information</h6>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="profile-card p-3">
+          
+                            
+                              <p class="text-sm">
+                                Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
+                              </p>
+                              <hr class="horizontal gray-light my-4">
+                              <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">First Name <span>*</span></strong> &nbsp; <input type="text" name="first_name" value="{{$user->first_name}}"></li>
+                                @if ($errors->has('first_name'))
+                                <span>
+                                  <p>{{$errors->first("first_name")}}</p>
+                                </span>
+                                @endif
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Last Name <span>*</span></strong> &nbsp; <input type="text" name="last_name" value="{{$user->last_name}}"></li>
+                                @if ($errors->has('last_name'))
+                                <span>
+                                  <p>{{$errors->first("last_name")}}</p>
+                                </span>
+                                @endif
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile <span>*</span></strong> &nbsp; <input type="text" name="phone" value="{{$user->phone}}"></li>
+                                @if ($errors->has('phone'))
+                                <span>
+                                  <p>{{$errors->first("phone")}}</p>
+                                </span>
+                                @endif
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email <span>*</span></strong> &nbsp; <input type="text" name="email" value="{{$user->email}}"></li>
+                                @if ($errors->has('email'))
+                                <span>
+                                  <p>{{$errors->first("email")}}</p>
+                                </span>
+                                @endif
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Date of birth <span>*</span></strong> &nbsp; <input type="date" name="dob" value="{{$user->dob}}" style="border: solid; border-color: rgb(231, 232, 230);" ></li>
+                                @if ($errors->has('dob'))
+                                <span>
+                                  <p>{{$errors->first("dob")}}</p>
+                                </span>
+                                @endif
+                                
+                                <li class="list-group-item border-0 ps-0 pb-0">
+                                  <strong class="text-dark text-sm">Social:</strong> &nbsp;
+                                  <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                                    <i class="fab fa-facebook fa-lg"></i>
+                                  </a>
+                                  <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                                    <i class="fab fa-twitter fa-lg"></i>
+                                  </a>
+                                  <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                  </a>
+                                </li>
+                              </ul>
+                            
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-6">
+                        <div class="card card-plain shadow-none border-0 h-100">
+                          <div class="profile-header pb-0 p-3">
+                            <div class="row">
+                              <div class="col-md-8 d-flex align-items-center">
+                                <!-- <h6 class="mb-0">Profile Information</h6> -->
+                              </div>
+                              <div class="col-md-4 text-end">
+                                {{-- <a href="/buyer/profile/edit">
+                                  <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
+                                </a> --}}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="profile-card p-1">
+                              <!-- <p class="text-sm">
+                                <textarea name="" rows="3" style="width: 98%;">Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).</textarea>
+                                
+                              </p> -->
+                              <!-- <hr class="horizontal gray-light my-4"> -->
+                              <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 pt-7 text-sm"><strong class="text-dark">National identity number <span>*</span></strong> &nbsp; <input type="text" name="nid" value="{{$user->nid}}"></li>
+                                @if ($errors->has('nid'))
+                                <span>
+                                  <p>{{$errors->first("nid")}}</p>
+                                </span>
+                                @endif
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Passport number</strong> &nbsp; <input type="text" name="passport" value="{{$user->passport}}"></li>
+                                @if ($errors->has('passport'))
+                                <span>
+                                  <p>{{$errors->first("passport")}}</p>
+                                </span>
+                                @endif
+                                {{-- <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Profile picture <span>*</span></strong> &nbsp; <input type="file" name="photo" value="{{$user->photo}}" class="form-control form-control-lg" id="formFile" style="padding-top: 8px;"></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">My accounts documents <span>*</span></strong> &nbsp; <input type="file" name="account" value="{{$user->account}}" class="form-control form-control-lg" id="formFile" style="padding-top: 8px;"></li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">My business documents</strong> &nbsp; <input type="file" name="documents" value="{{$user->documents}}" class="form-control form-control-lg" id="formFile" style="padding-top: 8px;"></li> --}}
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Address <span>*</span></strong> &nbsp; <textarea name="address" rows="6" style="width: 100%;">{{$user->address}}</textarea></li>
+                                @if ($errors->has('address'))
+                                <span>
+                                  <p>{{$errors->first("address")}}</p>
+                                </span>
+                                @endif
+                                <li class="list-group-item border-0 ps-0 text-sm"></strong> &nbsp; <input type="submit" value="Save"></li>
+                              </ul>                      
+                          </div>
+                        </div>
+                      </div>      
+                    </div>
+                  </div>
+                </form>
+            @endif
+
+            
           </div>
         </div>
         

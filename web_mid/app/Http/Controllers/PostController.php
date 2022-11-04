@@ -159,4 +159,10 @@ class PostController extends Controller
             }
         }
     }
+
+    public function PostDetails(Request $request)
+    {
+        $post = post::where("id", $request->id)->first();
+        return view("buyer.postDetails")->with("post", $post);
+    }
 }

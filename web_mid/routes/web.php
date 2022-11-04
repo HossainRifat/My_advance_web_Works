@@ -44,3 +44,7 @@ Route::post('/buyer/post', [PostController::class, 'PostSubmit'])->name("PostSub
 
 Route::get('/buyer/posts/{name}/{id}', [PostController::class, 'GetPosts'])->name("GetPosts")->middleware('ValidBuyerLogin');
 Route::get('/buyer/profile/{id}', [BuyerController::class, 'Profile'])->name("Profile")->middleware('ValidBuyerLogin');
+
+Route::post('/buyer/profile', [BuyerController::class, 'ProfileSubmit'])->name("ProfileSubmit")->middleware('ValidBuyerLogin');
+
+Route::get('/buyer/post/details/{id}', [PostController::class, 'PostDetails'])->name("PostDetails")->middleware('ValidBuyerLogin');
