@@ -6,6 +6,7 @@ use App\Models\all_user;
 use App\Models\buyer;
 use App\Models\login;
 use App\Rules\AgeRule;
+use App\Rules\ChangePassRule;
 use App\Rules\EmailRule;
 use App\Rules\FileSaveRule;
 use App\Rules\PhoneRule;
@@ -297,6 +298,61 @@ class BuyerController extends Controller
             $buyer->phone = $data->phone;
             $buyer->save();
             return redirect()->route("Profile", "get");
+        }
+    }
+
+    public function Security()
+    {
+        if (session()->has("email")) {
+            $user = buyer::where('email', session()->get("email"))->first();
+            $all_user = all_user::where('email', session()->get("email"))->first();
+            return view("buyer.security")->with("user", $user)->with("all_user", $all_user);
+        } else {
+            return redirect()->route('Login');
+        }
+    }
+
+    public function SessionLogout(Request $request)
+    {
+        $user = login::where('token', $request->id)->first();
+        if ($user) {
+            $user->logout_time = date('h:i:s A m/d/Y', strtotime(date('h:i:s A m/d/Y')));
+            $user->save();
+            return redirect()->route("Security");
+        } else {
+            return redirect()->route("Login");
+        }
+    }
+
+    public function ChangePass(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                "old_password" => ["required", "max:50", "min:8", new ChangePassRule],
+                "password" => ["required", "max:50", "min:8"],
+                "password_confirmation" => ["required", "min:8", "max:50", "same:password"],
+
+            ],
+            [
+                "password.min" => "Password must be at least 8 character.",
+                "password_confirmation.min" => "Password must be at least 8 character.",
+                "password_confirmation.same" => "Password did not match."
+            ]
+
+        );
+
+        $user = buyer::where('email', session()->get("email"))->first();
+        $all_user = all_user::where('email', session()->get("email"))->first();
+        if ($user) {
+            $user->password = $request->password;
+            $user->save();
+
+            $all_user->password = $request->password;
+            $all_user->save();
+            return redirect()->route("BuyerDashboard");
+        } else {
+            return redirect()->route("Login");
         }
     }
 }

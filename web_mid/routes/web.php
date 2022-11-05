@@ -48,7 +48,15 @@ Route::get('/buyer/profile/{id}', [BuyerController::class, 'Profile'])->name("Pr
 
 Route::post('/buyer/profile', [BuyerController::class, 'ProfileSubmit'])->name("ProfileSubmit")->middleware('ValidBuyerLogin');
 
+Route::get('/buyer/security', [BuyerController::class, 'Security'])->name("Security")->middleware('ValidBuyerLogin');
+
 Route::get('/buyer/post/details/{id}', [PostController::class, 'PostDetails'])->name("PostDetails")->middleware('ValidBuyerLogin');
 Route::get('/buyer/bid/confirm/{id}', [BidController::class, 'ConfirmBid'])->name("ConfirmBid")->middleware('ValidBuyerLogin');
+
+Route::get('/buyer/logout/session/{id}', [BuyerController::class, 'SessionLogout'])->name("SessionLogout")->middleware('ValidBuyerLogin');
+
+Route::post('/buyer/changepass', [BuyerController::class, 'ChangePass'])->name("ChangePass")->middleware('ValidBuyerLogin');
+
+Route::post('/search', [PostController::class, 'Search']);
 
 Route::get('/test', [GlobalController::class, 'Test']);

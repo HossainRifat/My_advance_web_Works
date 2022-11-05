@@ -35,7 +35,7 @@ class LoginController extends Controller
     {
         if (Cookie::has('token')) {
             $value = Cookie::get('token');
-            $instance = login::where('token', $value)->first();
+            $instance = login::where('token', $value)->where('logout_time', "NULL")->first();
             if (!empty($instance)) {
 
                 $r = "Already logged in. " . $instance->user->email;

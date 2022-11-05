@@ -64,6 +64,14 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link text-dark font-weight-bold " href="/buyer/security">
+                <div class="text-dark font-weight-bold text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">security</i>
+                </div>
+                <span class="nav-link-text ms-1">Security</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-dark font-weight-bold " href="/buyer/logout">
                 <div class="text-dark font-weight-bold text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10 text-danger">logout</i>

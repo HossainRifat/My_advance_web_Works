@@ -78,7 +78,7 @@ class PostController extends Controller
     public function GetPosts(Request $request)
     {
         if ($request->id == "all") {
-            $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->get();
+            $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->paginate(10);
             //dd($user);
             if ($post) {
                 return view("buyer.posts")->with("all_post", $post);
@@ -87,7 +87,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "title") {
             if ($request->id == "AtoZ") {
-                $post = post::where("status", "post")->orderBy('title', 'asc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('title', 'asc')->paginate(10);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -95,7 +95,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->orderBy('title', 'desc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('title', 'desc')->paginate(10);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -105,7 +105,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "cat") {
             if ($request->id == "AtoZ") {
-                $post = post::where("status", "post")->orderBy('category', 'asc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('category', 'asc')->get();
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -113,7 +113,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->orderBy('category', 'desc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('category', 'desc')->paginate(10);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -123,7 +123,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "date") {
             if ($request->id == "1to9") {
-                $post = post::where("status", "post")->orderBy('expire_date', 'asc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('expire_date', 'asc')->paginate(10);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -131,7 +131,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->orderBy('expire_date', 'desc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('expire_date', 'desc')->paginate(10);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -141,7 +141,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "quantity") {
             if ($request->id == "1to9") {
-                $post = post::where("status", "post")->orderBy('quantity', 'asc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('quantity', 'asc')->paginate(10);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -149,7 +149,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->orderBy('quantity', 'desc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('quantity', 'desc')->paginate(10);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -172,5 +172,70 @@ class PostController extends Controller
         }
 
         return view("buyer.postDetails")->with("post", $post);
+    }
+
+    public function search(Request $request)
+    {
+        $output = '';
+
+        if ($request->ajax()) {
+            $posts = post::where('title', 'Like', '%' . $request->search . '%')->get();
+
+
+            if ($posts) {
+                foreach ($posts as $post) {
+
+                    $var = (explode(",", $post->quantity));
+                    $total_product = 0;
+                    $total_amount = 0;
+                    foreach ($var as $item2) {
+                        $var2 = explode("=", $item2);
+                        $total_product += (int)$var2[1];
+                        $total_amount = (int)$post->price * $total_product;
+                    }
+                    $total_bid = count($post->bid);
+
+                    $output .= '<div class="card card-body mt-3">
+                    <div class="media align-items-center align-items-lg-start text-lg-left flex-column flex-lg-row">
+                        <div class="mr-2 mb-3 mb-lg-0">
+                            <img src="/storage/uploads/' . $post->photo . '" width="150" height="150" alt="">
+                        </div>
+
+                        <div class="media-body">
+                            <h6 class="media-title font-weight-semibold">
+                                <a href="#" data-abc="true">' . $post->title . '</a>
+                            </h6>
+
+                            <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                                <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">' . $post->category . '</a></li>
+                            </ul>
+
+                            <p class="mb-3">' . $post->description . '</p>
+
+                            <ul class="list-inline list-inline-dotted mb-0">
+                                <li class="list-inline-item">Post by <a href="#" data-abc="true">' . $post->user->first_name . ' ' . $post->user->last_name . '</a></li><br>
+                                <li><p data-abc="true">' . $post->post_date . '</p></li>
+                                <li><p>From, ' . $post->user->address . '</p></li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                            
+                            <h3 class="mb-0 font-weight-semibold">$' . $total_amount . '</h3>
+                                <div class="text-muted"> Product count <br> <b>' . $total_product . '</b></div>
+                                <div class="text-muted"> Delivery <br> <b>' . $post->expire_date . '</b> </div>
+                                <div class="text-muted"> Bid count <br> <b>' . $total_bid . '</b> </div>
+                            
+                            <a href="/buyer/post/details/' . $post->id . '><button type="button"><i class="icon-cart-add"></i>Details</button></a>
+                        </div>
+                    </div>
+                </div>';
+                }
+
+                return response()->json($output);
+            }
+        }
+
+        return view("buyer.post")->with("search", true);
     }
 }

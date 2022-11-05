@@ -2,9 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery-3.6.0.min.js"></script>
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
     
@@ -16,7 +19,7 @@
         <div class="container d-flex justify-content-center mt-50 mb-50">
             
             <div class="row">
-               <div class="col-md-10">
+               <div class="col-md-10 my-cart">
 
                 @if ($all_post)
                     @foreach ($all_post as $item)
@@ -75,15 +78,22 @@
                     </div>
                     @endforeach
                 @else
-                    
+                    <h1>hello</h1>
                 @endif
                         
                                  
-            </div>                     
+            </div>
+            <ul class=" page-posts row">
+                {{-- <p style="width: 10px;">{{$all_post->links()}}</p>  --}}
+                <li {{$all_post->links()}}</li>
+            </ul>                     
             </div>
         </div>
         <div class="right-container">
 
+            <div class="search">
+                <input type="search" name="search" id="search" placeholder="Search here..">
+            </div>
             <div class="posts-hed">
                 <h5 class="text-light">Short By</h5>
             </div>
@@ -116,6 +126,41 @@
         </div>
 
     </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+{{-- 
+    <script type="text/javascript">
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{csrf_token()}}' } });
+    </script>
+     --}}
+    <script>
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            $('#search').on('keyup', function(){
+                var value = $(this).val();
+                // console.log(value);
+                $.ajax({
+                    type: "POST",
+                    url: "/search",
+                    data: {'search':value},
+                    success: function (data) {
+                        $('.my-cart').html(data);
+                        //console.log(data);
+                    }
+                });
+            });
+        });
+    </script>
+
     @endsection
 </body>
 </html>
