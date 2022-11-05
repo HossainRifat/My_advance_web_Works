@@ -97,7 +97,7 @@
                                 <div class="text-muted"> Production per week <b>{{$item->seller->company->production_per_week}}</b></div>
                                 <div class="text-muted">Orders done <b>{{$item->seller->company->total_orders_done}}</b> </div>
 
-                                <a href="/buyer/post/details/{{$item->id}}"><button type="button"><i class="icon-cart-add"></i>Confirm</button></a>
+                                <a href="/buyer/bid/confirm/{{$item->id}}"><button type="button"><i class="icon-cart-add"></i>Confirm</button></a>
                             </div>
                         </div>
                     </div>

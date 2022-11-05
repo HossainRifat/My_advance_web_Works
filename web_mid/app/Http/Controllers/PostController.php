@@ -78,7 +78,7 @@ class PostController extends Controller
     public function GetPosts(Request $request)
     {
         if ($request->id == "all") {
-            $post = post::where("status", "post")->get();
+            $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->get();
             //dd($user);
             if ($post) {
                 return view("buyer.posts")->with("all_post", $post);
@@ -163,6 +163,14 @@ class PostController extends Controller
     public function PostDetails(Request $request)
     {
         $post = post::where("id", $request->id)->first();
+
+        foreach ($post->bid as $item) {
+            if ($item->status == "post") {
+                $item->status = "seen";
+                $item->save();
+            }
+        }
+
         return view("buyer.postDetails")->with("post", $post);
     }
 }

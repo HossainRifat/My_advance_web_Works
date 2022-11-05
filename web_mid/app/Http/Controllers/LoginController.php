@@ -79,8 +79,8 @@ class LoginController extends Controller
 
                 if ($user->entity == 'buyer') {
                     $user2 = buyer::where('email', $user->email)->first();
-                    session()->put("id", $user2->id);
                 }
+                session()->put("id", $user2->id);
                 session()->put("entity", $user->entity);
                 session()->put("email", $user->email);
                 session()->put("token", $token);

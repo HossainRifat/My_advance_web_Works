@@ -3,83 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\bid;
+use App\Models\order;
+use App\Models\post;
 use Illuminate\Http\Request;
 
 class BidController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function ConfirmBid(Request $request)
     {
-        //
-    }
+        $bid = bid::where("id", $request->id)->first();
+        $bid->buyer_id = session()->get("id");
+        $bid->save();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $post = post::where("id", $bid->post->id)->first();
+        $post->status = "done";
+        $post->save();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $order = new order();
+        $order->title = $post->title;
+        $order->description = $post->description;
+        $order->quantity = $bid->quantity;
+        $order->price = $bid->price;
+        $order->order_date = date('h:i:s A d-m-Y', strtotime(date('h:i:s A d-m-Y')));
+        $order->delivery_date = $bid->delivery_date;
+        $order->seller_id = $bid->seller_id;
+        $order->buyer_id = session()->get("id");
+        $order->status = "1";
+        // dd($order);
+        $order->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\bid  $bid
-     * @return \Illuminate\Http\Response
-     */
-    public function show(bid $bid)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\bid  $bid
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(bid $bid)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\bid  $bid
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, bid $bid)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\bid  $bid
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(bid $bid)
-    {
-        //
+        return redirect()->route("BuyerDashboard");
     }
 }

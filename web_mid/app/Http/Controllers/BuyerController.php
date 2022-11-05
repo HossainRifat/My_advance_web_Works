@@ -250,7 +250,7 @@ class BuyerController extends Controller
         session()->forget("token");
         session()->forget("email");
         session()->forget("entity");
-
+        session()->forget("id");
         Cookie::queue(Cookie::forget("token"));
 
         return redirect()->route("Login");

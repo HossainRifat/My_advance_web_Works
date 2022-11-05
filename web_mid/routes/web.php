@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BidController;
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\LoginController;
@@ -48,3 +49,4 @@ Route::get('/buyer/profile/{id}', [BuyerController::class, 'Profile'])->name("Pr
 Route::post('/buyer/profile', [BuyerController::class, 'ProfileSubmit'])->name("ProfileSubmit")->middleware('ValidBuyerLogin');
 
 Route::get('/buyer/post/details/{id}', [PostController::class, 'PostDetails'])->name("PostDetails")->middleware('ValidBuyerLogin');
+Route::get('/buyer/bid/confirm/{id}', [BidController::class, 'ConfirmBid'])->name("ConfirmBid")->middleware('ValidBuyerLogin');
