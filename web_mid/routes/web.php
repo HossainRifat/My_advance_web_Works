@@ -50,3 +50,5 @@ Route::post('/buyer/profile', [BuyerController::class, 'ProfileSubmit'])->name("
 
 Route::get('/buyer/post/details/{id}', [PostController::class, 'PostDetails'])->name("PostDetails")->middleware('ValidBuyerLogin');
 Route::get('/buyer/bid/confirm/{id}', [BidController::class, 'ConfirmBid'])->name("ConfirmBid")->middleware('ValidBuyerLogin');
+
+Route::get('/test', [GlobalController::class, 'Test']);

@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css">
+    
     <title>Post</title>
 </head>
 <body>
@@ -65,7 +69,7 @@
                         </span>
                     @endif
                     <label>Upload your design</label>
-                    <input type="file" placeholder="Enter your profile picture" class="form-control form-control-lg" id="formFile" name="design" value="{{old('design')}}">
+                    <input type="file" placeholder="Enter your profile picture" class="form-control form-control-l dropify" id="formFile" name="design" value="{{old('design')}}">
                     @if ($errors->has('design'))
                         <span>
                             <p>{{$errors->first("design")}}</p>
@@ -107,6 +111,16 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+
+    <script>
+        $('.dropify').dropify();
+    </script>
     @endsection
+    
 </body>
 </html>

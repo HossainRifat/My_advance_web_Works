@@ -16,4 +16,9 @@ class GlobalController extends Controller
 
         return view('registration')->with("name", $request->id);
     }
+
+    public function Test()
+    {
+        return view('test');
+    }
 }
