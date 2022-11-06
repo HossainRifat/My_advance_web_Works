@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ValidationEmail;
 use App\Models\all_user;
 use App\Models\buyer;
 use App\Models\login;
@@ -10,10 +11,16 @@ use App\Rules\ChangePassRule;
 use App\Rules\EmailRule;
 use App\Rules\FileSaveRule;
 use App\Rules\PhoneRule;
+use Egulias\EmailValidator\Result\ValidEmail;
 use Faker\Core\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
+use function Symfony\Component\VarDumper\Dumper\esc;
 
 class BuyerController extends Controller
 {
@@ -29,7 +36,7 @@ class BuyerController extends Controller
                 "email" => ["required", "email", new EmailRule],
                 "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
                 "password" => "required | min:8 | max:50",
-                "design" => ["required", "mimes:jpg,png,jpeg"]
+                "photo" => ["required", "mimes:jpg,png,jpeg"]
             ],
             [
                 "password.min" => "Password should be at least 8 character.",
@@ -59,18 +66,24 @@ class BuyerController extends Controller
                 $jsonData = json_encode($data);
                 session()->put("reg1", $jsonData);
                 session()->put("email", $request->email);
+                session()->save();
                 //dd(session()->get("reg1"));
 
-                return redirect()->route('Registration02');
+                return redirect()->route('ValidationEmail');
             } else {
                 return redirect()->route('Registration');
             }
         }
     }
 
-    public function Registration02()
+    public function Registration02(Request $request)
     {
-        return view('buyer.registration02');
+        //dd($request->id, session()->get('validation_id'));
+        if ($request->id == session()->get("validation_id")) {
+            return view('buyer.registration02');
+        } else {
+            return redirect()->route("Home");
+        }
     }
 
     public function Registration02Submit(Request $request)
@@ -147,7 +160,7 @@ class BuyerController extends Controller
                 $jsonData = json_encode($data);
                 //dd($jsonData);
                 session()->put("reg2", $jsonData);
-
+                session()->save();
                 //dd(session()->get('reg2'), session()->get('reg1'));
 
                 return redirect()->route('Registration03');
@@ -374,5 +387,26 @@ class BuyerController extends Controller
         } else {
             return redirect()->route("Login");
         }
+    }
+
+    public function ValidationEmail()
+    {
+        // dd("here");
+        $validation_id = Str::random(32);
+        session()->forget("validation_id");
+        session()->put("validation_id", $validation_id);
+        session()->save();
+        $myEmail = session()->get("email");
+
+        $details = [
+            'title' => 'Welcome form RMG SOlution.',
+            'url' => 'http://127.0.0.1:8000/registration02/buyer/' . $validation_id . '',
+            'o_details' => $validation_id
+        ];
+        // return $details;
+
+        Mail::to($myEmail)->send(new ValidationEmail($details));
+
+        return Redirect::to("https://mail.google.com/mail/");
     }
 }

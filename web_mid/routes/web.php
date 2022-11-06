@@ -30,7 +30,9 @@ Route::post('/login', [LoginController::class, 'LoginSubmit'])->name("LoginSubmi
 Route::get('/registration/{id}', [GlobalController::class, 'Registration'])->name("Registration");
 Route::post('/registration/buyer', [BuyerController::class, 'RegistrationSubmit'])->name("RegistrationSubmit");
 
-Route::get('/registration02/buyer', [BuyerController::class, 'Registration02'])->name("Registration02")->middleware('ValidReg02');
+Route::get('/registration/buyer/valid', [BuyerController::class, 'ValidationEmail'])->name("ValidationEmail")->middleware('ValidReg02');
+
+Route::get('/registration02/buyer/{id}', [BuyerController::class, 'Registration02'])->name("Registration02")->middleware('ValidReg02');
 Route::post('/registration02/buyer', [BuyerController::class, 'Registration02Submit'])->name("Registration02Submit");
 
 Route::get('/registration03/buyer', [BuyerController::class, 'Registration03'])->name("Registration03")->middleware('ValidReg03');
