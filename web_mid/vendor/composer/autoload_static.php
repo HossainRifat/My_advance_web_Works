@@ -530,6 +530,7 @@ class ComposerStaticInitc54a5a7fc2075e2ff8e464013ae1dc75
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\everyMinute' => __DIR__ . '/../..' . '/app/Console/Commands/everyMinute.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
@@ -582,6 +583,7 @@ class ComposerStaticInitc54a5a7fc2075e2ff8e464013ae1dc75
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rules\\AgeRule' => __DIR__ . '/../..' . '/app/Rules/AgeRule.php',
+        'App\\Rules\\ChangePassRule' => __DIR__ . '/../..' . '/app/Rules/ChangePassRule.php',
         'App\\Rules\\EmailRule' => __DIR__ . '/../..' . '/app/Rules/EmailRule.php',
         'App\\Rules\\FileSaveRule' => __DIR__ . '/../..' . '/app/Rules/FileSaveRule.php',
         'App\\Rules\\PhoneRule' => __DIR__ . '/../..' . '/app/Rules/PhoneRule.php',

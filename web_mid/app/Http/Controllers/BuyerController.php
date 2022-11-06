@@ -257,6 +257,26 @@ class BuyerController extends Controller
         return redirect()->route("Login");
     }
 
+    public function RemoveAccount()
+    {
+        $user = login::where('token', session()->get("token"))->first();
+        if ($user) {
+            $user->logout_time = date('h:i:s A m/d/Y', strtotime(date('h:i:s A m/d/Y')));
+            $user->save();
+
+            all_user::where("email", session()->get("email"))->delete();
+        }
+
+
+        session()->forget("token");
+        session()->forget("email");
+        session()->forget("entity");
+        session()->forget("id");
+        Cookie::queue(Cookie::forget("token"));
+
+        return redirect()->route("Home");
+    }
+
     public function Profile(Request $request)
     {
         if (session()->has("email")) {

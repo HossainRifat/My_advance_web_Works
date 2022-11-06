@@ -57,6 +57,8 @@ Route::get('/buyer/logout/session/{id}', [BuyerController::class, 'SessionLogout
 
 Route::post('/buyer/changepass', [BuyerController::class, 'ChangePass'])->name("ChangePass")->middleware('ValidBuyerLogin');
 
+Route::get('/buyer/account/remove', [BuyerController::class, 'RemoveAccount'])->name("RemoveAccount")->middleware('ValidBuyerLogin');
+
 Route::post('/search', [PostController::class, 'Search']);
 
 Route::get('/test', [GlobalController::class, 'Test']);

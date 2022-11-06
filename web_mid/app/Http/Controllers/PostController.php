@@ -179,7 +179,7 @@ class PostController extends Controller
         $output = '';
 
         if ($request->ajax()) {
-            $posts = post::where('title', 'Like', '%' . $request->search . '%')->get();
+            $posts = post::where('title', 'Like', '%' . $request->search . '%')->where("status", "post")->get();
 
 
             if ($posts) {
@@ -226,7 +226,7 @@ class PostController extends Controller
                                 <div class="text-muted"> Delivery <br> <b>' . $post->expire_date . '</b> </div>
                                 <div class="text-muted"> Bid count <br> <b>' . $total_bid . '</b> </div>
                             
-                            <a href="/buyer/post/details/' . $post->id . '><button type="button"><i class="icon-cart-add"></i>Details</button></a>
+                            <a href="/buyer/post/details/' . $post->id . '"><button type="button">Details</button></a>
                         </div>
                     </div>
                 </div>';

@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="/dashboard/css/material-dashboard.css?v=3.0.4" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
     @section('content')
@@ -91,6 +92,7 @@
             <span class="mask  opacity-6"></span>
           </div>
           <div class="card card-body mx-3 mx-md-4 mt-n6">
+            <button class="btn btn-danger  position-absolute top-4 end-4 col-md-1 text-light" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
             <div class="row gx-4 mb-2">
               <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
@@ -105,8 +107,10 @@
                   <p class="mb-0 font-weight-normal text-sm">
                     CEO / Co-Founder
                   </p>
+                  
                 </div>
               </div>
+              
               
             </div>
 
@@ -159,10 +163,13 @@
                   <div class="card card-plain shadow-none border-0 h-100">
                     <div class="profile-header pb-0 p-3">
                       <div class="row">
+                        
                         <div class="col-md-8 d-flex align-items-center">
                           <!-- <h6 class="mb-0">Profile Information</h6> -->
+                          
                         </div>
                         <div class="col-md-4 text-end">
+                          
                           <a href="/buyer/profile/edit">
                             <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
                           </a>
@@ -317,6 +324,33 @@
         </div>
         
       </div>
+
+      <!-- Modal -->
+      <!-- Button trigger modal -->
+
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Warning</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure? You want to remove your account.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger"><a href="/buyer/account/remove" class="text-light">Yes Continue</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     @endsection
 </body>

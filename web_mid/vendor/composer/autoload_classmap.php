@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\everyMinute' => $baseDir . '/app/Console/Commands/everyMinute.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
@@ -58,6 +59,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Rules\\AgeRule' => $baseDir . '/app/Rules/AgeRule.php',
+    'App\\Rules\\ChangePassRule' => $baseDir . '/app/Rules/ChangePassRule.php',
     'App\\Rules\\EmailRule' => $baseDir . '/app/Rules/EmailRule.php',
     'App\\Rules\\FileSaveRule' => $baseDir . '/app/Rules/FileSaveRule.php',
     'App\\Rules\\PhoneRule' => $baseDir . '/app/Rules/PhoneRule.php',
