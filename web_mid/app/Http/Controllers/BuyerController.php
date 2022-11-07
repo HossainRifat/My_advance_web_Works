@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 use function Symfony\Component\VarDumper\Dumper\esc;
 
@@ -35,11 +36,11 @@ class BuyerController extends Controller
                 "gender" => "required",
                 "email" => ["required", "email", new EmailRule],
                 "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
-                "password" => "required | min:8 | max:50",
+                // "password" => "required | min:8 | max:50",
                 "photo" => ["required", "mimes:jpg,png,jpeg"]
             ],
             [
-                "password.min" => "Password should be at least 8 character.",
+                // "password.min" => "Password should be at least 8 character.",
                 "photo.mines" => "Only jpg, jpeg, png files are allowed."
             ]
 
@@ -60,7 +61,7 @@ class BuyerController extends Controller
                     'gender' => $request->gender,
                     'email' => $request->email,
                     'address' => $request->address,
-                    'password' => $request->password,
+                    // 'password' => $request->password,
                     'photo' => $filename,
                 ];
                 $jsonData = json_encode($data);
@@ -198,6 +199,8 @@ class BuyerController extends Controller
         $jsondata2 = session()->get('reg2');
         $data2 = json_decode($jsondata2);
 
+        $hash_password = Hash::make($request->password);
+
         $buyer = new buyer();
         $buyer->first_name = $data->first_name;
         $buyer->last_name = $data->last_name;
@@ -205,7 +208,7 @@ class BuyerController extends Controller
         $buyer->gender = $data->gender;
         $buyer->email = $data->email;
         $buyer->address = $data->address;
-        $buyer->password = $request->password;
+        $buyer->password = $hash_password;
         $buyer->photo = $data->photo;
 
         $buyer->nid = $data2->nid;
@@ -219,7 +222,7 @@ class BuyerController extends Controller
 
         $user = new all_user();
         $user->email = $data->email;
-        $user->password = $request->password;
+        $user->password = $hash_password;
         $user->entity = "buyer";
         $user->save();
 
@@ -303,34 +306,75 @@ class BuyerController extends Controller
     public function ProfileSubmit(Request $data)
     {
 
-        //dd($data);
-        $this->validate(
-            $data,
-            [
-                "first_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
-                "last_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
-                "dob" => ["required", "date", new AgeRule],
-
-                "email" => ["required", "email"],
-                "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
-                "nid" => ["required", "max:50"],
-                "passport" => ["max:50"],
-                "phone" => ["required", "max:50"],
-
-            ]
-        );
         $buyer = buyer::where('email', session()->get("email"))->first();
-        if ($buyer) {
-            $buyer->first_name = $data->first_name;
-            $buyer->last_name = $data->last_name;
-            $buyer->dob = $data->dob;
-            $buyer->email = $data->email;
-            $buyer->address = $data->address;
-            $buyer->nid = $data->nid;
-            $buyer->passport = $data->passport;
-            $buyer->phone = $data->phone;
-            $buyer->save();
-            return redirect()->route("Profile", "get");
+
+        if ($data->email == session()->get("email")) {
+
+            $this->validate(
+                $data,
+                [
+                    "first_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
+                    "last_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
+                    "dob" => ["required", "date", new AgeRule],
+
+                    "email" => ["required", "email"],
+                    "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
+                    "nid" => ["required", "max:50"],
+                    "passport" => ["max:50"],
+                    "phone" => ["required", "max:50"],
+
+                ]
+            );
+
+            if ($buyer) {
+                $buyer->first_name = $data->first_name;
+                $buyer->last_name = $data->last_name;
+                $buyer->dob = $data->dob;
+                $buyer->address = $data->address;
+                $buyer->nid = $data->nid;
+                $buyer->passport = $data->passport;
+                $buyer->phone = $data->phone;
+                $buyer->save();
+                return redirect()->route("Profile", "get");
+            }
+        } else {
+            $this->validate(
+                $data,
+                [
+                    "first_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
+                    "last_name" => ["required", "regex:/^[a-z ,.'-]+$/i", "min:1", "max:50"],
+                    "dob" => ["required", "date", new AgeRule],
+
+                    "email" => ["required", "email", new EmailRule],
+                    "address" => ["required", "regex:/^[#.0-9a-zA-Z\s,-]+$/i", "min:3", "max:1000"],
+                    "nid" => ["required", "max:50"],
+                    "passport" => ["max:50"],
+                    "phone" => ["required", "max:50"],
+
+                ]
+            );
+
+            if ($buyer) {
+                $buyer->first_name = $data->first_name;
+                $buyer->last_name = $data->last_name;
+                $buyer->dob = $data->dob;
+                $buyer->address = $data->address;
+                $buyer->email = $data->email;
+                $buyer->nid = $data->nid;
+                $buyer->passport = $data->passport;
+                $buyer->phone = $data->phone;
+                $buyer->save();
+
+                $all_user = all_user::where('email', session()->get("email"))->first();
+                $all_user->email = $data->email;
+                $all_user->save();
+
+                session()->forget("email");
+                session()->put("email", $data->email);
+                session()->save();
+
+                return redirect()->route("Profile", "get");
+            }
         }
     }
 
@@ -377,11 +421,13 @@ class BuyerController extends Controller
 
         $user = buyer::where('email', session()->get("email"))->first();
         $all_user = all_user::where('email', session()->get("email"))->first();
+
+        $hash_pass = Hash::make($request->password);
         if ($user) {
-            $user->password = $request->password;
+            $user->password = $hash_pass;
             $user->save();
 
-            $all_user->password = $request->password;
+            $all_user->password = $hash_pass;
             $all_user->save();
             return redirect()->route("BuyerDashboard");
         } else {

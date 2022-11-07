@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <form action="" enctype="multipart/form-data" style="margin: 200px;">
+    {{-- <form action="" enctype="multipart/form-data" style="margin: 200px;">
         {{ csrf_field() }}
         <label for="">File</label>
         <input type="file" class="dropify" name="image" id="image">
@@ -26,6 +26,13 @@
 
     <script>
         $('.dropify').dropify();
-    </script>
+    </script> --}}
+
+    <form action="test" method="post" style="margin: 200px;">
+        {{ csrf_field() }}
+        <label for="">Password</label>
+        <input type="text" name="pass" class="form-control">
+        <input type="submit" name="submit" class="btn btn-success">
+    </form>
 </body>
 </html>

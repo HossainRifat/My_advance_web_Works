@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-dark font-weight-bold active bg-gradient-primary" href="../pages/dashboard.html">
+              <a class="nav-link text-dark font-weight-bold active" href="../pages/dashboard.html">
                 <div class="text-dark font-weight-bold text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">dashboard</i>
                 </div>
@@ -48,7 +48,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link text-dark font-weight-bold " href="../pages/notifications.html">
+              <a class="nav-link text-dark font-weight-bold " href="">
                 <div class="text-dark font-weight-bold text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">notifications</i>
                 </div>
@@ -64,7 +64,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark font-weight-bold " href="/buyer/security">
+              <a class="nav-link text-dark font-weight-bold" href="/buyer/security">
                 <div class="text-dark font-weight-bold text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">security</i>
                 </div>
@@ -274,7 +274,8 @@
                           <i class="material-icons text-success text-gradient">notifications</i>
                         </span>
                         <div class="timeline-content">
-                          <h6 class="text-dark text-sm font-weight-bold mb-0">${{$item2->price}}, {{$item2->seller->first_name}} {{$item2->seller->last_name}}</h6>
+                          <h6 class="text-dark text-sm font-weight-bold mb-0">
+                           <a href="/buyer/post/details/{{$item2->post->id}}" class="text-secondary">${{$item2->price}}, {{$item2->seller->first_name}} {{$item2->seller->last_name}}</a> </h6>
                           <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{$item2->bid_date}}</p>
                         </div>
                       </div>

@@ -16,6 +16,9 @@ class ValidBuyerLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if ($request->session()->has("email")) {
+            return $next($request);
+        }
+        return redirect()->route("Login");
     }
 }

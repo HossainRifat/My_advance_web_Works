@@ -68,7 +68,7 @@ class PostController extends Controller
                 $post->status = "post";
                 $post->save();
 
-                dd("posted");
+                //dd("posted");
                 return redirect()->route('Post');
             }
             return redirect()->route('Post');
@@ -78,7 +78,7 @@ class PostController extends Controller
     public function GetPosts(Request $request)
     {
         if ($request->id == "all") {
-            $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->paginate(10);
+            $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->paginate(4);
             //dd($user);
             if ($post) {
                 return view("buyer.posts")->with("all_post", $post);
@@ -87,7 +87,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "title") {
             if ($request->id == "AtoZ") {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('title', 'asc')->paginate(10);
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('title', 'asc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -95,7 +95,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('title', 'desc')->paginate(10);
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('title', 'desc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -105,7 +105,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "cat") {
             if ($request->id == "AtoZ") {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('category', 'asc')->get();
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('category', 'asc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -113,7 +113,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('category', 'desc')->paginate(10);
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('category', 'desc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -123,7 +123,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "date") {
             if ($request->id == "1to9") {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('expire_date', 'asc')->paginate(10);
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('expire_date', 'asc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -131,7 +131,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('expire_date', 'desc')->paginate(10);
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('expire_date', 'desc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -141,7 +141,7 @@ class PostController extends Controller
             }
         } elseif ($request->name == "quantity") {
             if ($request->id == "1to9") {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('quantity', 'asc')->paginate(10);
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('quantity', 'asc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);
@@ -149,7 +149,7 @@ class PostController extends Controller
                     return view("buyer.posts");
                 }
             } else {
-                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('quantity', 'desc')->paginate(10);
+                $post = post::where("status", "post")->where("buyer_id", session()->get("id"))->orderBy('quantity', 'desc')->paginate(4);
                 //dd($user);
                 if ($post) {
                     return view("buyer.posts")->with("all_post", $post);

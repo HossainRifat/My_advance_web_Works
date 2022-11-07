@@ -64,3 +64,4 @@ Route::get('/buyer/account/remove', [BuyerController::class, 'RemoveAccount'])->
 Route::post('/search', [PostController::class, 'Search']);
 
 Route::get('/test', [GlobalController::class, 'Test']);
+Route::post('/test', [GlobalController::class, 'TestSub']);

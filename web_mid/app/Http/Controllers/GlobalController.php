@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class GlobalController extends Controller
 {
@@ -20,5 +22,14 @@ class GlobalController extends Controller
     public function Test()
     {
         return view('test');
+    }
+
+    public function TestSub(Request $r)
+    {
+        $g = '$2y$10$BKHHIzvISXP3Kx4giFCj9eGSOQuODbLHcawx4urDf93AfXVuRQptG';
+        $var = Hash::make($r->pass);
+        $len = Str::length($g);
+        $or = Hash::check($r->pass, $g);
+        dd($r->pass, $var, $or, $len);
     }
 }

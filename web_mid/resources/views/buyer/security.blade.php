@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link text-dark font-weight-bold active bg-gradient-primary" href="../pages/dashboard.html">
+              <a class="nav-link text-dark font-weight-bold" href="/buyer/dashboard">
                 <div class="text-dark font-weight-bold text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="material-icons opacity-10">dashboard</i>
                 </div>
@@ -61,6 +61,14 @@
                   <i class="material-icons opacity-10">person</i>
                 </div>
                 <span class="nav-link-text ms-1">Profile</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark font-weight-bold active" href="/buyer/security">
+                <div class="text-dark font-weight-bold text-center active me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">security</i>
+                </div>
+                <span class="nav-link-text ms-1">Security</span>
               </a>
             </li>
             <li class="nav-item">

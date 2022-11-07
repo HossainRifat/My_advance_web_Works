@@ -7,6 +7,7 @@ use App\Models\buyer;
 use App\Models\login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class LoginController extends Controller
@@ -66,7 +67,7 @@ class LoginController extends Controller
         $user = all_user::where('email', $request->email)->first();
         if (!empty($user)) {
 
-            if ($request->password == $user->password) {
+            if (Hash::check($request->password, $user->password)) {
                 $r = "Login Successful. " . $user->entity;
                 $token = Str::random(32);
                 $l1 = new login();

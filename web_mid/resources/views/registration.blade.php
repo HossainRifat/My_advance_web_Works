@@ -46,13 +46,13 @@
                                 <p>{{$errors->first("email")}}</p>
                             </span>
                         @endif
-                        <label>Password</label>
+                        {{-- <label>Password</label>
                         <input type="password" placeholder="Enter your password" name="password" value="{{old('password')}}">
                         @if ($errors->has('password'))
                             <span>
                                 <p>{{$errors->first("password")}}</p>
                             </span>
-                        @endif
+                        @endif --}}
                         <label>Gender</label><br>
                         <input type="radio" name="gender" value="male" class="form-check-input" value="{{old('gender')}}">
                         <label >Male</label>

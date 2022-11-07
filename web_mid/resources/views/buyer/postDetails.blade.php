@@ -70,7 +70,7 @@
                     <div class="card card-body mt-3">
                         <div class="media align-items-center align-items-lg-start text-lg-left flex-column flex-lg-row">
                             <div class="mr-2 mb-3 mb-lg-0">
-                                <img src="/storage/uploads/{{$item->seller->photo}}" width="50" height="50">
+                                <img src="/img/bid_img.png" width="50" height="50">
                             </div>
 
                             <div class="media-body">
