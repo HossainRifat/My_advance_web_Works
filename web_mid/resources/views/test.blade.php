@@ -28,11 +28,15 @@
         $('.dropify').dropify();
     </script> --}}
 
-    <form action="test" method="post" style="margin: 200px;">
+    <div style="margin: 200px;">
+        <h5>Your pc name: {{$name}}</h5>
+    </div>
+
+    {{-- <form action="test" method="post" >
         {{ csrf_field() }}
         <label for="">Password</label>
         <input type="text" name="pass" class="form-control">
         <input type="submit" name="submit" class="btn btn-success">
-    </form>
+    </form> --}}
 </body>
 </html>

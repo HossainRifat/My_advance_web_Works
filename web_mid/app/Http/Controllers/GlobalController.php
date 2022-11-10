@@ -21,7 +21,8 @@ class GlobalController extends Controller
 
     public function Test()
     {
-        return view('test');
+        $name = gethostname();
+        return view('test')->with("name", $name);
     }
 
     public function TestSub(Request $r)
